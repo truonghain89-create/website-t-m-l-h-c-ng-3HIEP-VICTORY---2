@@ -81,8 +81,12 @@ export default function BlogPage() {
             >
               <div>
                 {/* Cover Placeholder */}
-                <div className="w-full h-40 rounded-2xl bg-gradient-to-tr from-primary/10 via-secondary/10 to-accent/5 flex items-center justify-center text-4xl mb-5 border border-border/40">
-                  {b.image}
+                <div className="w-full h-40 rounded-2xl overflow-hidden bg-gradient-to-tr from-primary/10 via-secondary/10 to-accent/5 flex items-center justify-center mb-5 border border-border/40">
+                  {b.image.startsWith("/") ? (
+                    <img src={b.image} alt={b.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-4xl">{b.image}</span>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-2 mb-3">

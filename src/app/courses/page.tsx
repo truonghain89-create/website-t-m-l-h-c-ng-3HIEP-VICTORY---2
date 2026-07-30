@@ -59,8 +59,12 @@ export default function CoursesPage() {
           >
             <div>
               {/* Cover Mock */}
-              <div className="w-full h-32 rounded-2xl bg-gradient-to-tr from-primary/10 to-secondary/15 flex items-center justify-center text-4xl mb-5 border border-border/40">
-                {c.image}
+              <div className="w-full h-32 rounded-2xl overflow-hidden bg-gradient-to-tr from-primary/10 to-secondary/15 flex items-center justify-center mb-5 border border-border/40">
+                {c.image.startsWith("/") ? (
+                  <img src={c.image} alt={c.title} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-4xl">{c.image}</span>
+                )}
               </div>
 
               <div className="flex justify-between items-center mb-3">

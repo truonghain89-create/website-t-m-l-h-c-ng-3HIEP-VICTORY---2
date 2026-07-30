@@ -221,7 +221,13 @@ export default function HomePage() {
       </section>
 
       {/* 2. PLATFORM INTRODUCTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "GIỚI THIỆU NỀN TẢNG" : "WHO WE ARE"}</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
@@ -258,10 +264,16 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. MENTAL HEALTH ASSESSMENT CALLOUT */}
-      <section className="bg-background-section py-20 transition-colors">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="bg-background-section py-20 transition-colors"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -356,10 +368,16 @@ export default function HomePage() {
 
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. SERVICES SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "DỊCH VỤ HỖ TRỢ" : "OUR SERVICES"}</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
@@ -446,10 +464,16 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. SPECIALISTS SECTION */}
-      <section className="bg-background-secondary py-20 transition-colors">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="bg-background-secondary py-20 transition-colors"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-xl">
@@ -509,10 +533,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. CONSULTATION PROCESS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "QUY TRÌNH TƯ VẤN" : "CONSULTING WORKFLOW"}</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
@@ -608,10 +638,16 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. SKILLS COURSES */}
-      <section className="bg-background-secondary py-20 transition-colors">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="bg-background-secondary py-20 transition-colors"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-xl">
@@ -638,8 +674,12 @@ export default function HomePage() {
                 className="bg-card border border-border rounded-3xl p-6 shadow-premium hover:border-primary/45 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-background-secondary border border-border flex items-center justify-center text-2xl mb-4">
-                    {course.image}
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-background-secondary border border-border flex items-center justify-center mb-4">
+                    {course.image.startsWith("/") ? (
+                      <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-2xl">{course.image}</span>
+                    )}
                   </div>
                   
                   <span className="inline-block px-2.5 py-0.5 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-wider mb-3">
@@ -672,10 +712,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 8. RESOURCES SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Resources Left */}
@@ -744,10 +790,16 @@ export default function HomePage() {
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* 9. BLOG SECTION */}
-      <section className="bg-background-secondary py-20 transition-colors">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="bg-background-secondary py-20 transition-colors"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-xl">
@@ -774,8 +826,12 @@ export default function HomePage() {
                 className="bg-card border border-border rounded-3xl p-6 shadow-premium hover:border-primary/45 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-background-secondary border border-border flex items-center justify-center text-2xl mb-4">
-                    {b.image}
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-background-secondary border border-border flex items-center justify-center mb-4">
+                    {b.image.startsWith("/") ? (
+                      <img src={b.image} alt={b.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-2xl">{b.image}</span>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
@@ -811,10 +867,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 10. INSPIRING STORIES (TESTIMONIALS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold text-secondary tracking-wider uppercase subheading">
             {language === "vi" ? "CÂU CHUYỆN TRUYỀN CẢM HỨNG" : "STUDENT SUCCESS STORIES"}
@@ -849,10 +911,16 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* 11. FAQ ACCORDION */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center mb-12">
           <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "CÂU HỎI THƯỜNG GẶP" : "FAQ"}</span>
           <h2 className="text-3xl font-extrabold text-foreground mt-3">
@@ -889,10 +957,16 @@ export default function HomePage() {
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
       {/* 12. FINAL APPOINTMENT CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.98, y: 20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="p-8 md:p-16 rounded-[2.5rem] bg-gradient-to-tr from-primary via-primary/95 to-secondary text-white text-center shadow-premium relative overflow-hidden">
           {/* Background shapes */}
           <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-white/5 blur-2xl" />
@@ -927,7 +1001,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );

@@ -182,7 +182,7 @@ const INITIAL_COURSES: Course[] = [
     lessonsCount: 8,
     enrolled: true,
     progress: 35,
-    image: "📘",
+    image: "/course1.png",
     lessons: [
       { id: 101, title: "Bài 1: Hiểu về cơ chế căng thẳng và lo âu", duration: "15 phút", completed: true },
       { id: 102, title: "Bài 2: Nhận diện 'Tiếng nói chỉ trích bản thân'", duration: "20 phút", completed: true },
@@ -225,7 +225,7 @@ const INITIAL_COURSES: Course[] = [
     lessonsCount: 10,
     enrolled: false,
     progress: 0,
-    image: "🌿",
+    image: "/course2.png",
     lessons: [
       { id: 201, title: "Bài 1: Khám phá bản đồ cảm xúc cá nhân", duration: "15 phút", completed: false },
       { id: 202, title: "Bài 2: Tại sao chúng ta lại nổi giận?", duration: "20 phút", completed: false },
@@ -260,7 +260,7 @@ const INITIAL_COURSES: Course[] = [
     lessonsCount: 6,
     enrolled: false,
     progress: 0,
-    image: "👨‍👩‍👧‍👦",
+    image: "/course3.png",
     lessons: [
       { id: 301, title: "Bài 1: Sự thay đổi não bộ ở tuổi dậy thì", duration: "20 phút", completed: false },
       { id: 302, title: "Bài 2: Giải mã ngôn ngữ và hành vi của Gen Z", duration: "25 phút", completed: false },
@@ -293,7 +293,7 @@ const INITIAL_BLOGS: Blog[] = [
     date: "15 Tháng 7, 2026",
     readTime: "6 phút đọc",
     author: "ThS. Phạm Minh Anh",
-    image: "🌿",
+    image: "/blog1.png",
     content: "Kiệt sức học đường (Academic Burnout) không chỉ đơn thuần là mệt mỏi sau một kỳ thi căng thẳng. Đó là một trạng thái kiệt quệ kéo dài cả về tinh thần, cảm xúc lẫn thể chất xuất phát từ áp lực học tập quá tải hoặc kỳ vọng quá lớn từ gia đình và bản thân.\n\n### Nhận diện các dấu hiệu Burnout:\n1. **Kiệt quệ thể chất**: Thường xuyên đau đầu, đau vai gáy, mất ngủ mặc dù cơ thể vô cùng mệt mỏi.\n2. **Xa lánh công việc**: Cảm thấy học tập là một gánh nặng cực hình, chán ghét sách vở và các hoạt động câu lạc bộ.\n3. **Giảm hiệu suất học tập**: Khó tập trung, suy giảm trí nhớ, kết quả thi cử đi xuống rõ rệt.\n\n### Làm sao để vượt qua?\n- **Thiết lập ranh giới**: Hãy dũng cảm từ chối các nhiệm vụ không thiết yếu. Sức khỏe tinh thần của bạn là ưu tiên số một.\n- **Thay đổi nhịp sinh hoạt**: Đảm bảo ngủ đủ 7-8 tiếng mỗi ngày. Giấc ngủ chính là lúc bộ não tự chữa lành.\n- **Tìm kiếm sự đồng cảm**: Đừng ngần ngại trò chuyện với một người bạn thân thiết, cha mẹ hoặc liên hệ với phòng tâm lý học đường.",
   },
   {
@@ -304,7 +304,7 @@ const INITIAL_BLOGS: Blog[] = [
     date: "12 Tháng 7, 2026",
     readTime: "8 phút đọc",
     author: "TS. Nguyễn Thị Mai",
-    image: "👨‍👩‍👧‍👦",
+    image: "/blog2.png",
     content: "Mỗi khi mùa thi đến, áp lực không chỉ đè nặng lên vai học sinh mà còn bao trùm cả không khí gia đình. Tuy nhiên, nhiều bậc phụ huynh vô tình chuyển áp lực lo lắng của chính mình sang con trẻ bằng những lời cằn nhằn hay sự kỳ vọng ngột ngạt.\n\n### Cha mẹ nên làm gì?\n- **Thay đổi cách nói chuyện**: Thay vì hỏi 'Hôm nay con làm được bao nhiêu bài?', hãy hỏi 'Con học có mệt không? Mẹ nấu món con thích nhé!'.\n- **Tạo không gian yên tĩnh**: Giảm thiểu cãi vã, tiếng ồn lớn trong nhà để con tập trung ôn tập tốt hơn.\n- **Không so sánh**: Mỗi đứa trẻ là độc bản, việc so sánh con với 'con nhà người ta' chỉ đẩy con vào bức tường cô độc và tự ti.",
   },
   {
@@ -315,7 +315,7 @@ const INITIAL_BLOGS: Blog[] = [
     date: "10 Tháng 7, 2026",
     readTime: "5 phút đọc",
     author: "ThS. Lê Văn Hải",
-    image: "🌿",
+    image: "/blog3.png",
     content: "Cơn tức giận là cảm xúc hoàn toàn tự nhiên của con người. Tuy nhiên, hành động dưới tác động của cơn tức giận bộc phát có thể gây ra những tổn thương không đáng có cho các mối quan hệ.\n\n### Nguyên tắc 5 giây làm nguội cơn giận:\n1. **Nhận diện cảm xúc**: Khi thấy lồng ngực thắt lại, giọng nói to hơn, hãy tự nhủ: 'Mình đang giận'.\n2. **Tạm dừng**: Không nói, không nhắn tin trong vòng 5 giây tiếp theo.\n3. **Hít thở sâu**: Thực hiện 3 hơi thở bụng sâu để đưa oxy lên não, giảm nhịp tim.\n4. **Rời đi nếu cần**: Xin phép bạn rời khỏi cuộc tranh luận và quay lại khi cả hai đã bình tĩnh.",
   },
 ];

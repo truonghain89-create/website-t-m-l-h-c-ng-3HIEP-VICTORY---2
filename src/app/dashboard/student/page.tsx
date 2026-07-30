@@ -131,7 +131,13 @@ export default function StudentDashboard() {
                 {enrolledCourses.map((c) => (
                   <div key={c.id} className="p-4 border border-border bg-background-secondary rounded-2xl flex flex-col justify-between">
                     <div>
-                      <span className="text-2xl mb-2 block">{c.image}</span>
+                      <div className="w-10 h-10 rounded-xl overflow-hidden bg-background-secondary border border-border/50 flex items-center justify-center mb-3">
+                        {c.image.startsWith("/") ? (
+                          <img src={c.image} alt={c.title} className="w-full h-full object-cover" />
+                        ) : (
+                          <span className="text-xl">{c.image}</span>
+                        )}
+                      </div>
                       <h4 className="font-heading font-bold text-sm text-foreground mb-1 line-clamp-1">{c.title}</h4>
                       <span className="text-[10px] text-foreground-secondary block mb-4">{c.duration}</span>
                     </div>
