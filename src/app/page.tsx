@@ -246,13 +246,12 @@ export default function HomePage() {
               key={idx}
               className="p-8 rounded-2xl bg-card border border-border shadow-premium hover:border-primary/40 hover:-translate-y-1 transition-all group"
             >
-              {/* Replacing simple icon with small realistic visual photo thumbnail */}
-              <div className="w-12 h-12 rounded-xl overflow-hidden border border-border flex items-center justify-center mb-6 group-hover:border-primary/40 transition-all relative">
+              <div className="w-full h-48 rounded-2xl overflow-hidden border border-border flex items-center justify-center mb-6 relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={idx === 0 ? "/hero.png" : idx === 1 ? "/office.png" : "/parent.png"}
+                  src={idx === 0 ? "/feature_listening.png" : idx === 1 ? "/feature_confidentiality.png" : "/feature_holistic.png"}
                   alt={language === "vi" ? f.titleVi : f.titleEn}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <h3 className="font-heading font-bold text-lg text-foreground mb-3">
