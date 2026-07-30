@@ -67,9 +67,11 @@ export const Header: React.FC = () => {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-premium">
-            <Heart className="w-5 h-5 fill-current" />
-          </div>
+          <img 
+            src="/thpt-tam-hiep-logo.png" 
+            alt="Trường THPT Tam Hiệp" 
+            className="w-10 h-10 object-contain rounded-full bg-white p-0.5 shadow-premium border border-border/40 shrink-0 group-hover:scale-105 transition-transform duration-300"
+          />
           <div>
             <span className="font-heading font-bold text-xl tracking-tight text-foreground">
               MindCare
