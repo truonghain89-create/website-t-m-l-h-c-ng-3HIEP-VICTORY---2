@@ -213,7 +213,7 @@ export default function AIChatbot() {
   return (
     <>
       {/* ═══ FLOATING ACTION BUTTON (FAB) ═══ */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-6 right-6 z-[9999]">
         <motion.button
           onClick={() => setIsOpen(prev => !prev)}
           whileHover={{ scale: 1.08 }}
@@ -259,7 +259,7 @@ export default function AIChatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 50 }}
             transition={{ type: "spring", stiffness: 260, damping: 25 }}
-            className="fixed bottom-24 right-6 w-[360px] sm:w-[400px] h-[550px] rounded-3xl glass border border-border shadow-xl z-45 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 w-[360px] sm:w-[400px] h-[550px] rounded-3xl glass border border-border shadow-xl z-[9999] flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="px-5 py-4 border-b border-border bg-background-secondary/60 flex items-center justify-between">
