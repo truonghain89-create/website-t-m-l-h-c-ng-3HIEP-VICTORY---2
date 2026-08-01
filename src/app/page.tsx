@@ -1074,34 +1074,34 @@ export default function HomePage() {
         transition={{ duration: 0.6 }}
         className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="p-8 md:p-14 rounded-[2rem] bg-gradient-to-tr from-primary via-primary/95 to-secondary text-white text-center shadow-md relative overflow-hidden">
-          {/* Background circles */}
-          <div className="absolute top-0 left-0 w-52 h-52 rounded-full bg-white/5 blur-2xl" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white/10 blur-2xl" />
+        <div className="p-8 md:p-14 rounded-[2rem] bg-gradient-to-tr from-primary via-primary/95 to-secondary text-white text-center shadow-lg relative overflow-hidden">
+          {/* Background circles / glow effects */}
+          <div className="absolute -top-10 -left-10 w-72 h-72 rounded-full bg-white/10 blur-[80px]" />
+          <div className="absolute -bottom-10 -right-10 w-80 h-80 rounded-full bg-highlight/20 blur-[90px]" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-accent tracking-wider uppercase block mb-3">
-              {language === "vi" ? "MINDCARE LUÔN LẮNG NGHE BẠN" : "WE ARE HERE TO ACCCOMPANY YOU"}
+            <span className="text-[10px] font-bold text-[#FFE3A3] tracking-widest uppercase block mb-3 drop-shadow-xs">
+              {language === "vi" ? "MINDCARE LUÔN LẮNG NGHE BẠN" : "WE ARE HERE TO ACCOMPANY YOU"}
             </span>
-            <h2 className="text-h1 font-bold tracking-tight mb-5 leading-[1.1]">
+            <h2 className="text-h1 font-extrabold tracking-tight mb-5 leading-[1.15] text-white drop-shadow-sm">
               {language === "vi" ? "Mở cánh cửa bình yên cho tâm hồn của bạn" : "Unlock a Peaceful Mind Today"}
             </h2>
-            <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-8 max-w-[50ch] mx-auto">
+            <p className="text-xs sm:text-sm text-white/95 leading-relaxed mb-8 max-w-[50ch] mx-auto drop-shadow-xs">
               {language === "vi"
                 ? "Lắng nghe bản thân và dành thời gian nuôi dưỡng tâm trí chính là chiếc chìa khóa mở ra tương lai rạng rỡ."
                 : "Tuning in to your emotional needs and investing in self-care paves the way for a brighter academic future."}
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link
                 href="/booking"
-                className="bg-white text-primary hover:bg-white/95 px-7 py-3 rounded-xl font-bold text-xs shadow-md transition-all"
+                className="w-full sm:w-auto bg-white text-primary hover:bg-white/95 px-8 py-3.5 rounded-2xl font-bold text-xs shadow-md transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-glow-sm"
               >
                 {language === "vi" ? "Đặt lịch trò chuyện 1-1" : "Book a 1-1 Chat"}
               </Link>
               <Link
                 href="/assessment"
-                className="bg-transparent border border-white/20 hover:border-white text-white px-7 py-3 rounded-xl font-bold text-xs transition-all"
+                className="w-full sm:w-auto bg-white/10 border border-white/30 hover:border-white/60 hover:bg-white/20 text-white px-8 py-3.5 rounded-2xl font-bold text-xs transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 {language === "vi" ? "Làm đánh giá tâm lý" : "Start Wellness Screening"}
               </Link>
