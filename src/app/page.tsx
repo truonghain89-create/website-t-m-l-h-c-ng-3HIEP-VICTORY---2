@@ -8,83 +8,77 @@ import {
   BookOpen, Video, HelpCircle, PhoneCall, ChevronRight, MessageCircle, FileText, Check
 } from "lucide-react";
 import { motion } from "framer-motion";
+import HeroSection from "@/components/HeroSection";
 
 export default function HomePage() {
   const { language, specialists, courses, blogs } = useAppState();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const stats = [
-    { value: "10,000+", labelVi: "Học sinh được hỗ trợ", labelEn: "Students Supported" },
-    { value: "15+", labelVi: "Chuyên gia tâm lý đầu ngành", labelEn: "Psychologists & Experts" },
-    { value: "98%", labelVi: "Tỷ lệ phụ huynh hài lòng", labelEn: "Parents Satisfaction" },
-    { value: "30+", labelVi: "Trường học đối tác liên kết", labelEn: "Partner Schools" },
-  ];
-
   const features = [
     {
-      icon: <Sparkles className="w-6 h-6 text-primary" />,
-      titleVi: "Lắng nghe chân thành",
-      titleEn: "Empathetic Listening",
-      descVi: "Phòng tâm lý là không gian an toàn tuyệt đối, nơi mọi tiếng lòng của học sinh đều được trân trọng và lắng nghe.",
-      descEn: "Our counseling room is a completely safe space, where every student's voice is respected and heard."
+      icon: <Sparkles className="w-5 h-5 text-primary" />,
+      titleVi: "Thấu cảm sâu sắc",
+      titleEn: "Empathetic Guidance",
+      descVi: "Kiến tạo một điểm tựa tinh thần cởi mở, nơi mọi xúc cảm và tiếng lòng của học sinh đều được đón nhận và trân trọng.",
+      descEn: "We foster an open space of trust, ensuring that every student's emotions and voice are embraced and valued."
     },
     {
-      icon: <Shield className="w-6 h-6 text-secondary" />,
-      titleVi: "Bảo mật tuyệt đối",
-      titleEn: "Absolute Confidentiality",
-      descVi: "Mọi thông tin tham vấn cá nhân được mã hóa và bảo mật nghiêm ngặt theo tiêu chuẩn đạo đức nghề nghiệp quốc tế.",
-      descEn: "All personal consultation data is strictly encrypted and protected under international ethical codes."
+      icon: <Shield className="w-5 h-5 text-secondary" />,
+      titleVi: "An toàn & Riêng tư",
+      titleEn: "Guaranteed Privacy",
+      descVi: "Quyền riêng tư của bạn là ưu tiên hàng đầu, cam kết bảo mật thông tin tuyệt đối theo các tiêu chuẩn đạo đức nghề nghiệp.",
+      descEn: "Your privacy is our utmost priority, with a commitment to strict confidentiality aligned with ethical codes."
     },
     {
-      icon: <UserCheck className="w-6 h-6 text-accent" />,
-      titleVi: "Đồng hành toàn diện",
-      titleEn: "Holistic Accompanying",
-      descVi: "Kết nối mật thiết giữa học sinh, gia đình và nhà trường nhằm xây dựng một bệ đỡ sức khỏe tinh thần vững chắc.",
-      descEn: "Close collaboration between students, families, and schools to build a solid mental health support system."
+      icon: <UserCheck className="w-5 h-5 text-accent" />,
+      titleVi: "Nâng đỡ trọn vẹn",
+      titleEn: "Full-Circle Care",
+      descVi: "Xây dựng sợi dây liên kết bền chặt giữa nhà trường, gia đình và học sinh để cùng tạo nên một môi trường phát triển lành mạnh.",
+      descEn: "Bridging the gap between schools, families, and students to collectively foster a healthy growing environment."
     }
   ];
 
   const processSteps = [
     {
       step: "01",
-      titleVi: "Làm đánh giá tâm lý",
-      titleEn: "Self-Assessment",
-      descVi: "Thực hiện bài khảo sát 10 câu hỏi để nhận diện mức độ lo âu, stress học tập.",
-      descEn: "Take a 10-question check-up to assess anxiety and stress levels."
+      titleVi: "Khảo sát trắc ẩn",
+      titleEn: "Inner Assessment",
+      descVi: "Thực hiện bảng khảo sát ngắn gọn để giúp bạn nhận diện chính xác trạng thái tâm lý và mức độ lo âu hiện tại.",
+      descEn: "Complete a brief check-in to accurately recognize your current mental state and stress levels."
     },
     {
       step: "02",
-      titleVi: "Nhận kết quả & Khuyên nghị",
-      titleEn: "Get Recommendation",
-      descVi: "Xem phân tích mức độ rủi ro và các giải pháp chánh niệm tự rèn luyện phù hợp.",
-      descEn: "Review risk analysis and tailored mindfulness self-care guidelines."
+      titleVi: "Xem phân tích cá nhân",
+      titleEn: "Personalized Insights",
+      descVi: "Nhận kết quả sàng lọc kèm theo các chỉ dẫn khoa học và các bài thực hành chánh niệm tại nhà.",
+      descEn: "Get screening results paired with scientific guidance and tailored self-care mindfulness practices."
     },
     {
       step: "03",
-      titleVi: "Đặt lịch hẹn chuyên gia",
-      titleEn: "Book a Session",
-      descVi: "Chọn lịch rảnh của chuyên gia ưa thích và đặt lịch tư vấn Online/Offline chỉ trong 2 phút.",
-      descEn: "Select a slot on your favorite therapist's calendar and book in under 2 minutes."
+      titleVi: "Kết nối chuyên gia",
+      titleEn: "Counselor Match",
+      descVi: "Lựa chọn người đồng hành phù hợp từ đội ngũ chuyên gia và đặt lịch hẹn tư vấn thuận tiện chỉ trong tích tắc.",
+      descEn: "Choose a suitable counselor from our professional list and book a slot in a matter of seconds."
     },
     {
       step: "04",
-      titleVi: "Đồng hành trị liệu",
-      titleEn: "Continuous Therapy",
-      descVi: "Tham gia buổi gặp gỡ thấu cảm để tháo gỡ áp lực và theo dõi tiến trình hồi phục.",
-      descEn: "Join the empathetic session to dissolve blockages and track mental recovery."
+      titleVi: "Trị liệu chữa lành",
+      titleEn: "Mindful Recovery",
+      descVi: "Tham gia các buổi trò chuyện chuyên sâu để gỡ bỏ vướng mắc cảm xúc và xây dựng lối sống cân bằng.",
+      descEn: "Engage in dedicated therapy sessions to untangle emotional blocks and restore balance."
     }
   ];
 
   const testimonials = [
     {
-      quoteVi: "Nhờ có MindCare, em vượt qua được khủng hoảng ôn thi THPT quốc gia. Bài tập thở hộp và sự lắng nghe của cô Mai đã cứu rỗi tâm trí em lúc mệt mỏi nhất.",
-      quoteEn: "Thanks to MindCare, I survived the stress of national college entry exams. Box breathing and Ms. Mai's guidance saved my sanity.",
+      quoteVi: "Nhờ có MindCare, mình đã tìm thấy điểm tựa tinh thần để bước qua áp lực của kỳ thi tốt nghiệp. Những bài tập điều hòa nhịp thở thực sự đã giúp mình lấy lại sự bình tĩnh.",
+      quoteEn: "Thanks to MindCare, I found the mental support to navigate the pressure of final exams. The breathing techniques really helped me regain calm.",
       author: "Lê Minh H. (Học sinh lớp 12)",
       relation: "Student"
     },
     {
-      quoteVi: "Tôi từng bất lực trong việc trò chuyện cùng con trai tuổi dậy thì. Khóa học phụ huynh của MindCare đã mở khóa nút thắt giao tiếp giữa hai cha con.",
-      quoteEn: "I was once helpless when talking to my teenage son. MindCare's parent program unlocked the communication gap between us.",
+      quoteVi: "Tôi từng cảm thấy bất lực khi tìm cách chia sẻ cùng con. Khóa học dành cho cha mẹ của nền tảng đã giúp tôi thấu hiểu con mình và thu hẹp khoảng cách thế hệ.",
+      quoteEn: "I felt lost trying to connect with my child. The parent program on this platform guided me to listen and close the generational gap.",
       author: "Nguyễn Kim L. (Phụ huynh học sinh)",
       relation: "Parent"
     }
@@ -92,254 +86,178 @@ export default function HomePage() {
 
   const faqs = [
     {
-      qVi: "Dịch vụ tư vấn học đường của MindCare có bảo mật không?",
-      qEn: "Is MindCare's school counseling service confidential?",
-      aVi: "Có, bảo mật thông tin là điều khoản tiên quyết của chúng tôi. Danh tính và nội dung buổi trò chuyện chỉ được chia sẻ trong trường hợp có nguy hiểm khẩn cấp đe dọa trực tiếp đến tính mạng của học sinh.",
-      aEn: "Yes, confidentiality is our core protocol. Client details and dialogue are kept strictly secure, only shared in critical situations involving self-harm risk or life threat."
+      qVi: "Nội dung các cuộc trò chuyện tư vấn có được giữ kín hoàn toàn không?",
+      qEn: "Are counseling discussions kept strictly confidential?",
+      aVi: "Tất nhiên rồi. Nguyên tắc bảo mật là cam kết cao nhất của chúng tôi. Mọi thông tin chỉ được chia sẻ trong trường hợp đặc biệt khi có nguy cơ ảnh hưởng trực tiếp đến an toàn tính mạng của học sinh.",
+      aEn: "Absolutely. Confidentiality is our absolute vow. Information is never disclosed unless there is an imminent threat to the student's safety."
     },
     {
-      qVi: "Tôi có mất phí khi làm bài đánh giá sức khỏe tinh thần không?",
-      qEn: "Do I have to pay to take the mental health assessment?",
-      aVi: "Hoàn toàn miễn phí. Bài đánh giá được thiết kế nhằm mục đích sàng lọc sơ bộ cho cộng đồng học sinh, sinh viên và phụ huynh dễ dàng tiếp cận.",
-      aEn: "No, it is 105% free. The assessment tool is crafted for initial screening and accessibility for the student, parent, and teacher community."
+      qVi: "Tôi có cần trả phí khi tham gia làm bài khảo sát sàng lọc không?",
+      qEn: "Is there any cost associated with taking the screening test?",
+      aVi: "Bài trắc nghiệm sàng lọc sức khỏe tinh thần được cung cấp hoàn toàn miễn phí nhằm hỗ trợ cộng đồng học sinh, phụ huynh dễ dàng tự nhận diện cảm xúc.",
+      aEn: "No, the mental health check-up is completely free to ensure easy accessibility for students, teachers, and parents."
     },
     {
-      qVi: "Tư vấn Online hay Offline có hiệu quả tốt hơn?",
-      qEn: "Is Online or Offline counseling more effective?",
-      aVi: "Cả hai hình thức đều có hiệu quả tham vấn cao. Tư vấn Offline giúp tăng tương tác trực quan tại phòng tâm lý ấm cúng, trong khi tư vấn Online mang lại sự tiện lợi, an toàn và riêng tư tối đa tại nhà.",
-      aEn: "Both formats offer high clinical effectiveness. Offline allows warm, face-to-face interaction, while Online offers flexibility, privacy, and safety from your own room."
+      qVi: "Nên chọn tham vấn trực tuyến (Online) hay gặp mặt trực tiếp (Offline)?",
+      qEn: "Should I select online or in-person consultation?",
+      aVi: "Cả hai hình thức đều mang lại hiệu quả cao. Gặp trực tiếp giúp tăng kết nối tự nhiên tại phòng tâm lý, còn tư vấn trực tuyến mang lại sự riêng tư, linh hoạt và thuận tiện tối đa.",
+      aEn: "Both methods yield great outcomes. In-person creates closer connection, while online counseling offers supreme flexibility, privacy, and ease."
     }
   ];
 
   return (
-    <div className="flex flex-col gap-24 pb-16 overflow-hidden">
+    <div className="flex flex-col gap-28 pb-20 overflow-hidden">
       
       {/* 1. HERO SECTION */}
-      <section className="relative bg-gradient-to-b from-background-secondary via-background-secondary to-background pt-16 pb-20 md:py-32">
-        {/* Soft background glow circles */}
-        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-secondary/10 blur-3xl" />
+      <HeroSection />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Hero Left Content */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-left"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 subheading">
-                <Heart className="w-3.5 h-3.5 fill-current" />
-                <span>{language === "vi" ? "Chăm sóc sức khỏe tinh thần thế hệ mới" : "Next-gen Mental Health Support"}</span>
-              </div>
-              
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6">
-                {language === "vi" ? "Đồng hành cùng sức khỏe tinh thần học đường" : "Empowering Minds in Every Classroom"}
-              </h1>
-              
-              <p className="text-lg text-foreground-secondary leading-relaxed mb-8 max-w-[55ch]">
-                {language === "vi" 
-                  ? "Lắng nghe – Thấu hiểu – Đồng hành cùng học sinh, sinh viên và gia đình trên hành trình phát triển sức khỏe tinh thần tích cực."
-                  : "Listening – Understanding – Accompanying students and families on the path to positive psychological well-being."}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/assessment"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/95 text-white px-8 py-4 rounded-2xl font-bold text-base shadow-premium hover:translate-y-[-2px] transition-all"
-                >
-                  <ClipboardCheck className="w-5 h-5" />
-                  <span>{language === "vi" ? "Đánh giá ngay" : "Take Assessment"}</span>
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-                
-                <Link
-                  href="/booking"
-                  className="inline-flex items-center justify-center gap-2 bg-card hover:bg-background-secondary border border-border text-foreground px-8 py-4 rounded-2xl font-bold text-base shadow-sm hover:translate-y-[-2px] transition-all"
-                >
-                  <PhoneCall className="w-5 h-5 text-secondary" />
-                  <span>{language === "vi" ? "Đặt lịch tư vấn" : "Book Consultant"}</span>
-                </Link>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-divider mt-12 pt-8">
-                {stats.map((s, idx) => (
-                  <div key={idx}>
-                    <span className="block font-heading font-extrabold text-2xl text-primary">{s.value}</span>
-                    <span className="block text-xs text-foreground-secondary font-medium mt-1 leading-tight">
-                      {language === "vi" ? s.labelVi : s.labelEn}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-            </motion.div>
-
-            {/* Hero Right Asset */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative flex items-center justify-center w-full max-w-lg aspect-[4/3] sm:aspect-square"
-            >
-              {/* Actual Image Container with realistic visual focus */}
-              <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-premium border border-border">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/hero.png"
-                  alt="Student meditating in school library"
-                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 animate-float-image"
-                />
-                
-                {/* Dark/Light overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-
-                {/* Floating Glassmorphic Feedback Overlay */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass shadow-premium text-left flex items-start gap-3 backdrop-blur-md">
-                  <div className="w-9 h-9 rounded-full bg-secondary/20 flex items-center justify-center text-secondary text-sm shrink-0 border border-secondary/20">
-                    💚
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-bold text-xs text-foreground dark:text-white leading-none">
-                      {language === "vi" ? "Đồng hành tâm lý học đường" : "Active Campus Therapy"}
-                    </h4>
-                    <p className="text-[10px] text-foreground-secondary dark:text-gray-300 mt-1 leading-snug">
-                      {language === "vi"
-                        ? "Hơn 10.000 học sinh, sinh viên được lắng nghe và hỗ trợ định hướng cảm xúc tích cực."
-                        : "Over 10,000 students supported with personalized coping blueprints."}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 2. PLATFORM INTRODUCTION */}
+      {/* 2. PLATFORM INTRODUCTION - Staggered Asymmetrical Layout */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "GIỚI THIỆU NỀN TẢNG" : "WHO WE ARE"}</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-            {language === "vi" ? "Vì một thế hệ học đường hạnh phúc và vững vàng" : "For a Happy & Resilient Student Generation"}
-          </h2>
-          <p className="text-base text-foreground-secondary mt-4 leading-relaxed">
-            {language === "vi"
-              ? "MindCare được xây dựng với mục tiêu mang lại giải pháp chăm sóc sức khỏe tinh thần học đường số hóa toàn diện, an toàn, hiện đại và chuẩn mực khoa học."
-              : "MindCare delivers comprehensive, digitally powered school mental health solutions built on scientific standards and strict privacy."}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((f, idx) => (
-            <div 
-              key={idx}
-              className="p-8 rounded-2xl bg-card border border-border shadow-premium hover:border-primary/40 hover:-translate-y-1 transition-all group"
-            >
-              <div className="w-full h-48 rounded-2xl overflow-hidden border border-border flex items-center justify-center mb-6 relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={idx === 0 ? "/feature_listening.png" : idx === 1 ? "/feature_confidentiality.png" : "/feature_holistic.png"}
-                  alt={language === "vi" ? f.titleVi : f.titleEn}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-foreground mb-3">
-                {language === "vi" ? f.titleVi : f.titleEn}
-              </h3>
-              <p className="text-sm text-foreground-secondary leading-relaxed">
-                {language === "vi" ? f.descVi : f.descEn}
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Text Column */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24">
+            <span className="section-label text-primary">
+              {language === "vi" ? "GIỚI THIỆU NỀN TẢNG" : "WHO WE ARE"}
+            </span>
+            <h2 className="text-h2 font-bold tracking-tight text-foreground mt-4 leading-[1.15]">
+              {language === "vi" ? "Đồng hành hướng tới học đường an vui, vững tâm" : "Guiding the Next Generation Toward Peace"}
+            </h2>
+            <p className="text-body text-foreground-secondary mt-5 leading-relaxed max-w-[45ch]">
+              {language === "vi"
+                ? "Chúng tôi kiến tạo giải pháp hỗ trợ tâm lý số hóa tối ưu, giúp học sinh, phụ huynh và giáo viên chủ động chăm sóc tinh thần hàng ngày."
+                : "Our platform offers digital-first psychological tools, helping students, educators, and parents navigate life's challenges with proactive care."}
+            </p>
+            <div className="mt-8">
+              <Link 
+                href="/about"
+                className="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-primary/80 group"
+              >
+                <span>{language === "vi" ? "Tìm hiểu thêm về sứ mệnh" : "Learn more about our mission"}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-          ))}
+          </div>
+
+          {/* Right Staggered Column */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 pt-4">
+            {features.map((f, idx) => {
+              const isFirst = idx === 0;
+              const isSecond = idx === 1;
+              
+              const cardBg = "bg-card border border-border/80 dark:border-white/5 shadow-sm";
+              const hoverGlow = isFirst 
+                ? "hover:border-primary/50 hover:shadow-glow-sm" 
+                : isSecond 
+                ? "hover:border-secondary/50 hover:shadow-glow-sm" 
+                : "hover:border-accent/50 hover:shadow-glow-sm";
+
+              const badgeText = language === "vi" 
+                ? (isFirst ? "LẮNG NGHE" : isSecond ? "BẢO MẬT" : "ĐỒNG HÀNH")
+                : (isFirst ? "LISTEN" : isSecond ? "SECURE" : "HOLISTIC");
+
+              const badgeColor = isFirst 
+                ? "bg-primary/10 text-primary border-primary/20" 
+                : isSecond 
+                ? "bg-secondary/10 text-secondary border-secondary/20" 
+                : "bg-accent/10 text-accent border-accent/20";
+              
+              const imagePath = isFirst 
+                ? "/feature_listening_new.png" 
+                : isSecond 
+                ? "/feature_confidentiality_new.png" 
+                : "/feature_holistic_new.png";
+
+              // Staggered offsets for cards
+              const staggerClass = idx === 0 
+                ? "sm:mt-0" 
+                : idx === 1 
+                ? "sm:mt-8" 
+                : "sm:mt-16";
+
+              return (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 }}
+                  className={`p-6 rounded-3xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between group ${cardBg} ${hoverGlow} ${staggerClass}`}
+                >
+                  <div>
+                    {/* Image Area */}
+                    <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden border border-border/80 dark:border-white/5 flex items-center justify-center mb-5 relative bg-background-secondary/30">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imagePath}
+                        alt={language === "vi" ? f.titleVi : f.titleEn}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className={`absolute top-3 left-3 px-2 py-0.5 text-[8px] font-bold tracking-wider rounded-md border backdrop-blur-md z-10 ${badgeColor}`}>
+                        {badgeText}
+                      </span>
+                    </div>
+
+                    {/* Icon & Title */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="p-1.5 rounded-lg border border-border/50 bg-background flex items-center justify-center shrink-0">
+                        {f.icon}
+                      </div>
+                      <h3 className="font-heading font-bold text-sm text-foreground">
+                        {language === "vi" ? f.titleVi : f.titleEn}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-[11px] text-foreground-secondary leading-relaxed">
+                      {language === "vi" ? f.descVi : f.descEn}
+                    </p>
+                  </div>
+
+                  {/* Counter */}
+                  <div className="mt-6 pt-3 border-t border-divider flex items-center justify-between">
+                    <span className="text-[9px] font-extrabold text-foreground-secondary/30">
+                      MINDCARE
+                    </span>
+                    <span className="font-heading font-black text-xs text-foreground-secondary/20 group-hover:text-primary/30 transition-colors">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </motion.section>
 
-      {/* 3. MENTAL HEALTH ASSESSMENT CALLOUT */}
+      {/* 3. MENTAL HEALTH ASSESSMENT - Alternating Layout (Image Left, Content Right) */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
         className="bg-background-section py-20 transition-colors"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Callout Left */}
-            <div className="lg:col-span-7">
-              <span className="text-xs font-bold text-secondary tracking-wider uppercase subheading">
-                {language === "vi" ? "ĐÁNH GIÁ SỨC KHỎE TINH THẦN" : "MENTAL CHECK-UP"}
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3 leading-tight">
-                {language === "vi" ? "Bạn có đang quá tải hay lo âu thi cử?" : "Are you overloaded with exams or stress?"}
-              </h2>
-              <p className="text-base text-foreground-secondary mt-4 leading-relaxed">
-                {language === "vi"
-                  ? "Dành ra 3 phút thực hiện bài tự đánh giá sàng lọc tâm lý dựa trên thang đo chuẩn mực (PSS & GAD-7) của Hiệp hội Tâm lý học. Kết quả phân tích sẽ đi kèm với các bài tập chánh niệm tự rèn luyện và gợi ý hỗ trợ từ chuyên gia."
-                  : "Spend 3 minutes on our self-screening test based on standard psychological scales (PSS & GAD-7). Receive personalized wellness guidelines and matching consultant suggestions."}
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                <div className="flex items-center gap-3 text-sm text-foreground font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center">
-                    <Check className="w-3.5 h-3.5" />
-                  </div>
-                  <span>{language === "vi" ? "10 câu hỏi trắc nghiệm nhanh" : "10 quick multiple choice questions"}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-foreground font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center">
-                    <Check className="w-3.5 h-3.5" />
-                  </div>
-                  <span>{language === "vi" ? "Khuyến nghị cá nhân hóa" : "Personalized guidelines"}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-foreground font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center">
-                    <Check className="w-3.5 h-3.5" />
-                  </div>
-                  <span>{language === "vi" ? "Hoàn toàn bảo mật" : "100% Secure & Confidential"}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-foreground font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center">
-                    <Check className="w-3.5 h-3.5" />
-                  </div>
-                  <span>{language === "vi" ? "Miễn phí 100%" : "Free to take"}</span>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <Link
-                  href="/assessment"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/95 text-white px-8 py-3.5 rounded-2xl font-bold text-base shadow-premium hover:translate-y-[-2px] transition-all"
-                >
-                  <ClipboardCheck className="w-5 h-5" />
-                  <span>{language === "vi" ? "Bắt đầu đánh giá ngay" : "Start Screening Now"}</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Callout Right (Mock Question Preview Box) */}
-            <div className="lg:col-span-5 bg-card border border-border rounded-3xl p-8 shadow-premium">
+            {/* Mock Question Preview Box (Left Side) */}
+            <div className="lg:col-span-5 bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-sm lg:order-1 order-2">
               <div className="flex justify-between items-center mb-6">
-                <span className="text-xs text-foreground-secondary font-bold uppercase tracking-wider">{language === "vi" ? "Câu hỏi mẫu" : "Question Preview"}</span>
+                <span className="text-[10px] text-foreground-secondary font-bold uppercase tracking-wider">{language === "vi" ? "Câu hỏi mẫu" : "Question Preview"}</span>
                 <span className="text-xs text-primary font-bold">Q 04/10</span>
               </div>
-              <h3 className="font-heading font-bold text-base text-foreground leading-snug mb-5">
+              <h3 className="font-heading font-bold text-sm sm:text-base text-foreground leading-snug mb-5">
                 {language === "vi" 
-                  ? "Trong vòng 2 tuần qua, bạn có thường xuyên gặp khó khăn trong việc ngủ ngon giấc hoặc ngủ quá nhiều vì lo lắng không?"
-                  : "Over the last 2 weeks, how often have you been bothered by trouble falling or staying asleep, or sleeping too much?"}
+                  ? "Trong suốt nửa tháng qua, bạn có hay trằn trọc khó ngủ hoặc cảm thấy rệu rã, kiệt sức vì những lo toan bài vở?"
+                  : "During the past two weeks, have you frequently struggled with restful sleep or felt physically exhausted from study anxiety?"}
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {[
                   { value: 1, labelVi: "Hoàn toàn không", labelEn: "Not at all" },
                   { value: 2, labelVi: "Thỉnh thoảng vài ngày", labelEn: "Several days" },
@@ -348,16 +266,16 @@ export default function HomePage() {
                 ].map((option) => (
                   <div
                     key={option.value}
-                    className={`p-3.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all flex items-center gap-3 ${
+                    className={`p-3 rounded-xl border text-xs font-semibold cursor-pointer transition-all flex items-center gap-3 ${
                       option.value === 2 
                         ? "border-primary bg-primary/5 text-primary" 
                         : "border-border text-foreground-secondary hover:bg-background-secondary"
                     }`}
                   >
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
                       option.value === 2 ? "border-primary" : "border-border"
                     }`}>
-                      {option.value === 2 && <div className="w-2 h-2 rounded-full bg-primary" />}
+                      {option.value === 2 && <div className="w-1.5 h-1.5 rounded-full bg-primary" />}
                     </div>
                     <span>{language === "vi" ? option.labelVi : option.labelEn}</span>
                   </div>
@@ -365,166 +283,229 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* Content Column (Right Side) */}
+            <div className="lg:col-span-7 lg:order-2 order-1">
+              <span className="section-label text-secondary">
+                {language === "vi" ? "KHẢO SÁT TÂM LÝ" : "WELLNESS SCREENING"}
+              </span>
+              <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+                {language === "vi" ? "Giải mã mức độ áp lực học tập và thi cử" : "Is Academic Stress Holding You Back?"}
+              </h2>
+              <p className="text-body text-foreground-secondary mt-5 leading-relaxed">
+                {language === "vi"
+                  ? "Chỉ với 3 phút nhanh chóng để nhận diện cảm xúc. Bản đánh giá trực quan dựa trên các thang đo chuẩn quốc tế giúp bạn gỡ bỏ khúc mắc tinh thần."
+                  : "Discover your current mental wellness status using globally recognized psychological scales. Receive an instant analysis paired with daily emotional coping mechanisms."}
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                <div className="flex items-center gap-2.5 text-xs text-foreground font-semibold">
+                  <div className="w-4 h-4 rounded-full bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span>{language === "vi" ? "10 câu hỏi trắc nghiệm nhanh" : "10 quick multiple choice questions"}</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-xs text-foreground font-semibold">
+                  <div className="w-4 h-4 rounded-full bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span>{language === "vi" ? "Khuyến nghị cá nhân hóa" : "Personalized guidelines"}</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-xs text-foreground font-semibold">
+                  <div className="w-4 h-4 rounded-full bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span>{language === "vi" ? "Hoàn toàn bảo mật" : "100% Secure & Confidential"}</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-xs text-foreground font-semibold">
+                  <div className="w-4 h-4 rounded-full bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span>{language === "vi" ? "Miễn phí 100%" : "Free to take"}</span>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Link
+                  href="/assessment"
+                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/95 text-white px-7 py-3 rounded-2xl font-bold text-xs shadow-sm hover:translate-y-[-1px] transition-all"
+                >
+                  <ClipboardCheck className="w-4.5 h-4.5" />
+                  <span>{language === "vi" ? "Bắt đầu đánh giá ngay" : "Start Screening Now"}</span>
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
       </motion.section>
 
-      {/* 4. SERVICES SECTION */}
+      {/* 4. SERVICES SECTION - Bento Grid 2x3 */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "DỊCH VỤ HỖ TRỢ" : "OUR SERVICES"}</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-            {language === "vi" ? "Các giải pháp hỗ trợ tâm lý chuyên nghiệp" : "Professional Psychological Counseling Services"}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="section-label text-primary justify-center">
+            {language === "vi" ? "DỊCH VỤ HỖ TRỢ" : "OUR SERVICES"}
+          </span>
+          <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+            {language === "vi" ? "Các giải pháp hỗ trợ tâm lý chuyên nghiệp" : "Professional Psychological Support"}
           </h2>
-          <p className="text-base text-foreground-secondary mt-4 leading-relaxed">
+          <p className="text-body text-foreground-secondary mt-4">
             {language === "vi"
-              ? "Chúng tôi cung cấp đa dạng hình thức tham vấn, trị liệu phù hợp cho từng cá nhân và các đối tượng liên đới trong vòng tròn giáo dục."
+              ? "Tham vấn, trị liệu phù hợp cho từng cá nhân và các đối tượng trong vòng tròn giáo dục."
               : "We provide diverse tailored therapy models serving individuals, families, and partner educators."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              titleVi: "Tư vấn cá nhân (Học sinh/Sinh viên)",
-              titleEn: "Individual Student Counseling",
-              descVi: "Gặp gỡ riêng tư 1-1 cùng chuyên gia tâm lý học đường. Tham vấn các vấn đề về áp lực thi cử, định hướng nghề nghiệp, lo âu học tập.",
-              descEn: "Private 1-1 therapy sessions resolving exam stress, anxiety, family problems, or lack of study motivation.",
+              titleVi: "Tham vấn Cá nhân 1-1",
+              titleEn: "One-on-One Support",
+              descVi: "Không gian gặp gỡ bảo mật cùng chuyên viên để tháo gỡ khó khăn về lo âu thi cử, xung đột mối quan hệ và định hướng học tập.",
+              descEn: "Safe, confidential sessions with professionals to navigate academic stress, study blocks, and personal hurdles.",
               icon: "👤",
-              color: "bg-blue-500/10 text-blue-500"
+              color: "bg-blue-500/10 text-blue-500",
+              className: "md:col-span-2" // Bento Feature Card
             },
             {
-              titleVi: "Tư vấn phụ huynh",
-              titleEn: "Parent Consultation",
-              descVi: "Tham vấn giúp cha mẹ thấu hiểu tâm lý tuổi dậy thì của con, làm bạn cùng con và giải quyết xung đột khoảng cách thế hệ trong gia đình.",
-              descEn: "Consultations helping parents bridge communication gaps, decode Gen Z, and resolve family generation conflicts.",
+              titleVi: "Đồng hành cùng Phụ huynh",
+              titleEn: "Family & Parent Advisory",
+              descVi: "Trợ giúp cha mẹ thấu hiểu tâm sinh lý tuổi teen, hóa giải những bất đồng quan điểm.",
+              descEn: "Advisory to support parents in understanding adolescent growth and resolving conflicts.",
               icon: "👨‍👩‍👧‍👦",
-              color: "bg-emerald-500/10 text-emerald-500"
+              color: "bg-emerald-500/10 text-emerald-500",
+              className: "md:col-span-1"
             },
             {
-              titleVi: "Tham vấn giáo viên",
-              titleEn: "Educator Support & Training",
-              descVi: "Giải tỏa căng thẳng nghề nghiệp cho thầy cô, đồng thời hướng dẫn phương pháp phát hiện sớm và can thiệp tâm lý học sinh ban đầu.",
-              descEn: "Therapy dealing with professional burnout and training teachers on basic student mental health screening.",
+              titleVi: "Hỗ trợ Đội ngũ Giáo viên",
+              titleEn: "Teacher Wellness & Support",
+              descVi: "Đồng hành giải tỏa áp lực giảng dạy, chia sẻ kỹ năng nhận diện sớm học sinh.",
+              descEn: "Addressing educator burnout while equipping teachers with skills to support students.",
               icon: "🏫",
-              color: "bg-amber-500/10 text-amber-500"
+              color: "bg-amber-500/10 text-amber-500",
+              className: "md:col-span-1"
             },
             {
-              titleVi: "Tham vấn nhóm & Câu lạc bộ",
-              titleEn: "Group Therapy & Clubs",
-              descVi: "Tổ chức các nhóm trò chuyện có sự định hướng của chuyên gia nhằm kết nối, chia sẻ các lo lắng chung và rèn luyện kỹ năng xã hội.",
-              descEn: "Therapist-led circles sharing shared concerns, connecting student peers, and enhancing social communication skills.",
+              titleVi: "Sinh hoạt Nhóm & Trị liệu",
+              titleEn: "Group Circles & peer support",
+              descVi: "Tạo dựng vòng tròn kết nối thân thiện dưới sự dẫn dắt của chuyên gia để chia sẻ các mối lo chung và rèn luyện kỹ năng sống.",
+              descEn: "Moderated group meetups for sharing common obstacles, building empathy, and sharpening communication skills.",
               icon: "👥",
-              color: "bg-indigo-500/10 text-indigo-500"
+              color: "bg-indigo-500/10 text-indigo-500",
+              className: "md:col-span-2" // Bento Feature Card
             },
             {
-              titleVi: "Can thiệp khủng hoảng khẩn cấp",
-              titleEn: "Crisis Intervention",
-              descVi: "Hỗ trợ ứng cứu khẩn cấp cho các trường hợp học sinh gặp chấn thương tâm lý nặng, bạo lực học đường, có suy nghĩ tự hại.",
-              descEn: "Immediate emergency intervention for students facing severe psychological trauma, school bullying, or self-harm thoughts.",
+              titleVi: "Trợ giúp Khủng hoảng Kịp thời",
+              titleEn: "Urgent Crisis Guidance",
+              descVi: "Quy trình ứng cứu khẩn cấp và bảo vệ an toàn cho học sinh trước chấn thương tâm lý.",
+              descEn: "Immediate response protocols to secure safety for students experiencing extreme trauma.",
               icon: "🚨",
-              color: "bg-rose-500/10 text-rose-500"
+              color: "bg-rose-500/10 text-rose-500",
+              className: "md:col-span-1"
             },
             {
-              titleVi: "Tổ chức Workshop & Trải nghiệm",
-              titleEn: "Workshops & Self-care Camps",
-              descVi: "Tổ chức các buổi chuyên đề kỹ năng mềm, chánh niệm học đường, vẽ tranh trị liệu cho các cơ sở giáo dục liên kết.",
-              descEn: "On-campus workshops delivering soft skills, mindfulness, or art therapy to partner educational institutions.",
+              titleVi: "Workshop Kỹ năng & Chánh niệm",
+              titleEn: "Mindful Campus Workshops",
+              descVi: "Thiết kế các buổi thực hành kỹ năng mềm, viết nhật ký chánh niệm và liệu pháp nghệ thuật.",
+              descEn: "Interactive on-campus camps focused on emotional coping and interactive healing arts.",
               icon: "🎨",
-              color: "bg-purple-500/10 text-purple-500"
+              color: "bg-purple-500/10 text-purple-500",
+              className: "md:col-span-2" // Bento Feature Card
             }
           ].map((s, idx) => (
             <div 
               key={idx}
-              className="p-8 rounded-2xl bg-card border border-border shadow-premium hover:border-primary/40 hover:-translate-y-1 transition-all flex flex-col justify-between"
+              className={`p-6 rounded-3xl bg-card border border-border/80 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 hover:shadow-md flex flex-col justify-between ${s.className || ""}`}
             >
               <div>
-                <span className="text-3xl block mb-6">{s.icon}</span>
-                <h3 className="font-heading font-bold text-base text-foreground mb-3 leading-snug">
+                <div className={`w-10 h-10 rounded-2xl ${s.color} flex items-center justify-center text-lg mb-5`}>
+                  {s.icon}
+                </div>
+                <h3 className="font-heading font-bold text-sm text-foreground mb-2 leading-snug">
                   {language === "vi" ? s.titleVi : s.titleEn}
                 </h3>
-                <p className="text-xs text-foreground-secondary leading-relaxed mb-6">
+                <p className="text-[11px] text-foreground-secondary leading-relaxed mb-5">
                   {language === "vi" ? s.descVi : s.descEn}
                 </p>
               </div>
               <Link 
                 href="/services" 
-                className="inline-flex items-center text-xs font-bold text-primary hover:text-primary/85 group"
+                className="inline-flex items-center text-xs font-bold text-primary hover:text-primary/80 group"
               >
                 <span>{language === "vi" ? "Tìm hiểu thêm" : "Learn More"}</span>
-                <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
           ))}
         </div>
       </motion.section>
 
-      {/* 5. SPECIALISTS SECTION */}
+      {/* 5. SPECIALISTS SECTION - Mobile Horizontal Scroll / Desktop 4-Column Grid */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
         className="bg-background-secondary py-20 transition-colors"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="max-w-lg">
+              <span className="section-label text-primary">
                 {language === "vi" ? "ĐỘI NGŨ CHUYÊN GIA" : "OUR PSYCHOLOGISTS"}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-                {language === "vi" ? "Gặp gỡ những chuyên gia tận tâm" : "Accompained by certified specialists"}
+              <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+                {language === "vi" ? "Lắng nghe từ những chuyên gia thấu cảm" : "Nurtured by Qualified Specialists"}
               </h2>
             </div>
             <Link
               href="/specialists"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline shrink-0"
             >
               <span>{language === "vi" ? "Xem toàn bộ chuyên gia" : "View All Experts"}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Horizontal scroll container on mobile, grid on desktop */}
+          <div className="flex overflow-x-auto pb-4 gap-6 scrollbar-none md:grid md:grid-cols-4 md:overflow-x-visible md:pb-0">
             {specialists.map((sp) => (
               <div 
                 key={sp.id}
-                className="bg-card border border-border rounded-3xl p-6 shadow-premium flex flex-col justify-between hover:border-primary/45 transition-all"
+                className="min-w-[260px] md:min-w-0 bg-card border border-border/80 rounded-3xl p-5 shadow-sm flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 hover:shadow-md"
               >
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-primary/10 text-3xl flex items-center justify-center mx-auto mb-4 border border-primary/20">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 text-2xl flex items-center justify-center mx-auto mb-3.5 border border-primary/15">
                     {sp.avatar}
                   </div>
                   
-                  <h3 className="font-heading font-bold text-base text-foreground mb-1">
+                  <h3 className="font-heading font-bold text-sm text-foreground mb-0.5">
                     {sp.name}
                   </h3>
                   
-                  <span className="block text-[11px] text-primary font-bold uppercase tracking-wider subheading mb-3">
+                  <span className="block text-[9px] text-primary font-bold uppercase tracking-wider mb-2.5">
                     {sp.experience}
                   </span>
 
-                  <p className="text-[11px] text-foreground-secondary leading-relaxed line-clamp-3 mb-4">
+                  <p className="text-[10px] text-foreground-secondary leading-relaxed line-clamp-3 mb-4">
                     {sp.bio}
                   </p>
 
-                  <div className="flex items-center justify-center gap-1.5 mb-6 bg-background-secondary py-1.5 px-3 rounded-full w-fit mx-auto border border-border">
-                    <Star className="w-3.5 h-3.5 fill-accent text-accent" />
-                    <span className="text-xs font-bold text-foreground">{sp.rating}</span>
-                    <span className="text-[10px] text-foreground-secondary">({sp.reviewsCount} {language === "vi" ? "đánh giá" : "reviews"})</span>
+                  <div className="flex items-center justify-center gap-1 mb-5 bg-background-secondary py-1 px-2.5 rounded-full w-fit mx-auto border border-border/60">
+                    <Star className="w-3 h-3 fill-accent text-accent" />
+                    <span className="text-[10px] font-bold text-foreground">{sp.rating}</span>
+                    <span className="text-[9px] text-foreground-secondary">({sp.reviewsCount})</span>
                   </div>
                 </div>
 
                 <Link
                   href={`/specialists/${sp.id}`}
-                  className="w-full bg-primary hover:bg-primary/95 text-white text-center py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all"
+                  className="w-full bg-primary hover:bg-primary/95 text-white text-center py-2 rounded-xl text-xs font-bold shadow-xs transition-all"
                 >
                   {language === "vi" ? "Xem hồ sơ & Đặt lịch" : "Profile & Booking"}
                 </Link>
@@ -534,313 +515,321 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* 6. CONSULTATION PROCESS */}
+      {/* 6. CONSULTATION PROCESS - Vertical Timeline */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "QUY TRÌNH TƯ VẤN" : "CONSULTING WORKFLOW"}</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-            {language === "vi" ? "Các bước hỗ trợ đơn giản và khoa học" : "Simple, Guided & Stress-Free Process"}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="section-label text-primary justify-center">
+            {language === "vi" ? "QUY TRÌNH TƯ VẤN" : "CONSULTING WORKFLOW"}
+          </span>
+          <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+            {language === "vi" ? "Hành trình trợ giúp tinh thần tinh gọn" : "Your Path to Emotional Clarity"}
           </h2>
-          <p className="text-base text-foreground-secondary mt-4 leading-relaxed">
+          <p className="text-body text-foreground-secondary mt-4">
             {language === "vi"
-              ? "Chỉ với một vài thao tác, bạn đã có thể bắt đầu tiếp cận được với dịch vụ hỗ trợ tinh thần chuyên nghiệp."
+              ? "Chỉ với một vài thao tác, bạn đã có thể tiếp cận dịch vụ tham vấn chuyên nghiệp."
               : "Access counseling support safely in 4 straightforward digital steps."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Vertical Timeline Layout */}
+        <div className="relative max-w-3xl mx-auto pl-8 sm:pl-12 border-l border-divider/80 space-y-12">
           {processSteps.map((p, idx) => (
-            <div 
-              key={idx} 
-              className="bg-card border border-border p-6 rounded-[2rem] shadow-premium hover:border-primary/50 hover:shadow-lg transition-all flex flex-col justify-between items-start text-left relative overflow-hidden group hover:translate-y-[-4px]"
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="relative group"
             >
-              {/* Step indicator badge */}
-              <div className="absolute top-6 right-6 w-8 h-8 rounded-xl bg-background-secondary border border-border flex items-center justify-center font-heading font-black text-xs text-primary group-hover:bg-primary group-hover:text-white transition-all">
+              {/* Step indicator dot */}
+              <div className="absolute top-1 -left-[45px] sm:-left-[61px] w-8 h-8 rounded-xl bg-card border-2 border-primary/55 flex items-center justify-center font-heading font-black text-xs text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
                 {p.step}
               </div>
 
-              <div className="w-full">
-                {/* Title */}
-                <h3 className="font-heading font-bold text-base text-foreground mb-2 mt-4 pr-10">
-                  {language === "vi" ? p.titleVi : p.titleEn}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-xs text-foreground-secondary leading-relaxed mb-4">
-                  {language === "vi" ? p.descVi : p.descEn}
-                </p>
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 bg-card border border-border/80 p-5 sm:p-6 rounded-3xl shadow-sm hover:border-primary/30 transition-all">
+                <div className="md:col-span-8">
+                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-2">
+                    {language === "vi" ? p.titleVi : p.titleEn}
+                  </h3>
+                  <p className="text-xs text-foreground-secondary leading-relaxed">
+                    {language === "vi" ? p.descVi : p.descEn}
+                  </p>
+                </div>
 
-              {/* Realistic Detail Mock Widgets */}
-              <div className="w-full mt-2">
-                {/* Step 1: Self-Assessment Widget */}
-                {idx === 0 && (
-                  <div className="w-full bg-background-secondary border border-border rounded-xl p-3 text-left space-y-1.5 shadow-inner">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-foreground">
-                      <div className="w-3.5 h-3.5 rounded bg-primary/20 text-primary flex items-center justify-center text-[8px]">✓</div>
-                      <span>{language === "vi" ? "Khảo sát lo âu thi cử" : "Exam Anxiety Scale"}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-foreground">
-                      <div className="w-3.5 h-3.5 rounded bg-primary/20 text-primary flex items-center justify-center text-[8px]">✓</div>
-                      <span>{language === "vi" ? "Đo áp lực học tập (PSS)" : "Academic Stress (PSS)"}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[10px] font-medium text-foreground-secondary">
-                      <div className="w-3.5 h-3.5 rounded border border-border flex items-center justify-center text-[8px]" />
-                      <span>{language === "vi" ? "Nhận diện cảm xúc" : "Emotion Recognition"}</span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 2: Results Widget */}
-                {idx === 1 && (
-                  <div className="w-full bg-background-secondary border border-border rounded-xl p-3 text-left shadow-inner flex flex-col items-center">
-                    <div className="text-[10px] font-bold text-foreground mb-1.5">{language === "vi" ? "Mức độ stress: Trung bình" : "Stress Level: Moderate"}</div>
-                    <div className="w-full bg-border h-2 rounded-full overflow-hidden mb-1.5">
-                      <div className="bg-gradient-to-r from-secondary to-accent h-full w-[65%]" />
-                    </div>
-                    <div className="text-[9px] text-foreground-secondary font-semibold">{language === "vi" ? "Khuyên dùng: Luyện thở hộp" : "Recommended: Box Breathing"}</div>
-                  </div>
-                )}
-
-                {/* Step 3: Booking Scheduler Widget */}
-                {idx === 2 && (
-                  <div className="w-full bg-background-secondary border border-border rounded-xl p-3 text-left shadow-inner">
-                    <div className="text-[9px] text-foreground-secondary font-bold mb-1.5">{language === "vi" ? "Khung giờ rảnh chuyên gia" : "Available Therapist Slots"}</div>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <div className="py-1 px-1.5 bg-border text-[9px] text-center text-foreground-secondary/40 rounded font-bold cursor-not-allowed">09:00</div>
-                      <div className="py-1 px-1.5 bg-primary/15 border border-primary/25 text-[9px] text-center text-primary rounded font-bold animate-pulse">14:30</div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 4: Connecting Room Widget */}
-                {idx === 3 && (
-                  <div className="w-full bg-background-secondary border border-border rounded-xl p-3 text-left shadow-inner flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-secondary text-[10px]">👩‍⚕️</div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[9px] font-bold text-foreground truncate">{language === "vi" ? "TS. Nguyễn Thị Mai" : "Dr. Nguyen Mai"}</div>
-                      <div className="flex items-center gap-1 mt-0.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                        <span className="text-[8px] text-foreground-secondary leading-none">{language === "vi" ? "Đang kết nối..." : "Connecting..."}</span>
+                {/* Micro Widgets */}
+                <div className="md:col-span-4 flex items-center">
+                  {idx === 0 && (
+                    <div className="w-full bg-background-secondary/60 border border-border/60 rounded-xl p-2.5 text-left space-y-1 shadow-inner">
+                      <div className="flex items-center gap-1.5 text-[9px] font-bold text-foreground">
+                        <div className="w-3 h-3 rounded bg-primary/20 text-primary flex items-center justify-center text-[7px]">✓</div>
+                        <span>{language === "vi" ? "Khảo sát lo âu thi cử" : "Exam Anxiety Scale"}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[9px] font-bold text-foreground">
+                        <div className="w-3 h-3 rounded bg-primary/20 text-primary flex items-center justify-center text-[7px]">✓</div>
+                        <span>{language === "vi" ? "Đo áp lực học tập (PSS)" : "Academic Stress (PSS)"}</span>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
 
-            </div>
+                  {idx === 1 && (
+                    <div className="w-full bg-background-secondary/60 border border-border/60 rounded-xl p-2.5 text-left shadow-inner flex flex-col items-center">
+                      <div className="text-[9px] font-bold text-foreground mb-1">{language === "vi" ? "Stress: Trung bình" : "Stress: Moderate"}</div>
+                      <div className="w-full bg-border h-1.5 rounded-full overflow-hidden">
+                        <div className="bg-gradient-to-r from-secondary to-accent h-full w-[65%]" />
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 2 && (
+                    <div className="w-full bg-background-secondary/60 border border-border/60 rounded-xl p-2 text-left shadow-inner">
+                      <div className="grid grid-cols-2 gap-1">
+                        <div className="py-0.5 px-1 bg-border text-[8px] text-center text-foreground-secondary/40 rounded font-bold">09:00</div>
+                        <div className="py-0.5 px-1 bg-primary/15 border border-primary/20 text-[8px] text-center text-primary rounded font-bold animate-pulse">14:30</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 3 && (
+                    <div className="w-full bg-background-secondary/60 border border-border/60 rounded-xl p-2 text-left shadow-inner flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded-full bg-secondary/20 flex items-center justify-center text-[9px]">👩‍⚕️</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[8px] font-bold text-foreground truncate">{language === "vi" ? "TS. Nguyễn Thị Mai" : "Dr. Nguyen Mai"}</div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 rounded-full bg-emerald-500 animate-ping" />
+                          <span className="text-[7px] text-foreground-secondary leading-none">{language === "vi" ? "Đang kết nối..." : "Connecting..."}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </motion.section>
 
-      {/* 7. SKILLS COURSES */}
+      {/* 7. SKILLS COURSES - Staggered Height Cards */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
         className="bg-background-secondary py-20 transition-colors"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold text-secondary tracking-wider uppercase subheading">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="max-w-lg">
+              <span className="section-label text-secondary">
                 {language === "vi" ? "KHÓA HỌC KỸ NĂNG" : "LIFE SKILL COURSES"}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-                {language === "vi" ? "Chủ động rèn luyện trí tuệ cảm xúc" : "Nurture Emotional Intelligence"}
+              <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+                {language === "vi" ? "Rèn luyện và nâng cao trí tuệ cảm xúc" : "Grow Your Emotional Intelligence"}
               </h2>
             </div>
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline shrink-0"
             >
               <span>{language === "vi" ? "Xem tất cả khóa học" : "Explore All Courses"}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
+          {/* Staggered Height cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {courses.map((course) => (
-              <div 
-                key={course.id}
-                className="bg-card border border-border rounded-3xl p-6 shadow-premium hover:border-primary/45 transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-background-secondary border border-border flex items-center justify-center mb-4">
-                    {course.image.startsWith("/") ? (
-                      <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
-                    ) : (
-                      <span className="text-2xl">{course.image}</span>
-                    )}
+            {courses.map((course, index) => {
+              // Create staggered heights on desktop
+              const heightClass = index === 0 
+                ? "md:pb-12" 
+                : index === 1 
+                ? "md:pb-6" 
+                : "md:pb-16";
+                
+              return (
+                <div 
+                  key={course.id}
+                  className={`bg-card border border-border/80 rounded-3xl p-5 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 hover:shadow-md flex flex-col justify-between ${heightClass}`}
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl overflow-hidden bg-background-secondary border border-border flex items-center justify-center mb-4">
+                      {course.image.startsWith("/") ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-xl">{course.image}</span>
+                      )}
+                    </div>
+                    
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-primary/5 text-primary text-[9px] font-bold uppercase tracking-wider mb-2.5">
+                      {course.category}
+                    </span>
+
+                    <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-2 leading-snug">
+                      {course.title}
+                    </h3>
+
+                    <p className="text-xs text-foreground-secondary leading-relaxed mb-5">
+                      {course.description}
+                    </p>
                   </div>
-                  
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-wider mb-3">
-                    {course.category}
-                  </span>
 
-                  <h3 className="font-heading font-bold text-base text-foreground mb-3 leading-snug">
-                    {course.title}
-                  </h3>
-
-                  <p className="text-xs text-foreground-secondary leading-relaxed mb-6">
-                    {course.description}
-                  </p>
+                  <div className="border-t border-divider pt-3.5 flex items-center justify-between mt-auto">
+                    <span className="text-[10px] text-foreground-secondary font-medium">
+                      {course.duration}
+                    </span>
+                    
+                    <Link
+                      href={`/courses/${course.id}`}
+                      className="inline-flex items-center gap-1 bg-primary/5 hover:bg-primary/10 text-primary px-3.5 py-1.5 rounded-xl text-[10px] font-bold transition-all"
+                    >
+                      <span>{course.enrolled ? (language === "vi" ? "Học tiếp" : "Continue") : (language === "vi" ? "Xem chi tiết" : "Details")}</span>
+                      <ChevronRight className="w-3 h-3" />
+                    </Link>
+                  </div>
                 </div>
-
-                <div className="border-t border-divider pt-4 flex items-center justify-between mt-auto">
-                  <span className="text-xs text-foreground-secondary font-medium">
-                    {course.duration}
-                  </span>
-                  
-                  <Link
-                    href={`/courses/${course.id}`}
-                    className="inline-flex items-center gap-1.5 bg-primary/5 hover:bg-primary/10 text-primary px-4 py-2 rounded-xl text-xs font-bold transition-all"
-                  >
-                    <span>{course.enrolled ? (language === "vi" ? "Học tiếp" : "Continue") : (language === "vi" ? "Xem chi tiết" : "Details")}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </motion.section>
 
-      {/* 8. RESOURCES SECTION */}
+      {/* 8. RESOURCES SECTION - Left Sticky Title, Right Bento grid */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Resources Left */}
-          <div className="lg:col-span-5">
-            <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">
-              {language === "vi" ? "TÀI NGUYÊN TÂM LÝ" : "MENTAL WELLNESS LIBRARY"}
+          {/* Left Sticky Content */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24 h-fit">
+            <span className="section-label text-primary">
+              {language === "vi" ? "TÀI NGUYÊN TÂM LÝ" : "WELLNESS LIBRARY"}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-              {language === "vi" ? "Thư viện tài liệu hỗ trợ miễn phí" : "Free Self-Care Wellness Assets"}
+            <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+              {language === "vi" ? "Góc tài nguyên nâng niu tâm trí" : "Curated Self-Care Library"}
             </h2>
-            <p className="text-base text-foreground-secondary mt-4 leading-relaxed">
+            <p className="text-body text-foreground-secondary mt-4 leading-relaxed">
               {language === "vi"
-                ? "Tải về các tệp cẩm nang Ebook hướng dẫn ứng phó Stress, lắng nghe Podcast chữa lành từ chuyên gia, và tham khảo các cẩm nang chỉ dẫn tự xoa dịu cảm xúc hữu ích."
-                : "Download ebook survival manuals dealing with stress, listen to guided meditation podcasts, and print checklist guides to ease emotional spikes."}
+                ? "Thư viện lưu trữ các bộ cẩm nang điện tử hướng dẫn giải tỏa stress, các số podcast trị liệu chánh niệm."
+                : "Access handpicked coping toolkits, soothing clinical podcasts, and customizable worksheets to support your emotional health."}
             </p>
             <div className="mt-8">
               <Link
                 href="/resources"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-8 py-3.5 rounded-2xl font-bold text-base shadow-premium hover:translate-y-[-2px] transition-all"
+                className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-primary to-secondary text-white px-7 py-3 rounded-2xl font-bold text-xs shadow-sm hover:translate-y-[-1px] transition-all"
               >
                 <span>{language === "vi" ? "Khám phá thư viện" : "Browse Library"}</span>
-                <ArrowRight className="w-4.5 h-4.5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Resources Right (Interactive Bento Assets grid mockup) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Right Bento grid layout */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            <div className="p-6 rounded-2xl bg-background-section border border-border flex gap-4 hover:border-primary/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-lg shrink-0">🎧</div>
+            <div className="p-5 rounded-2xl bg-background-section border border-border/80 flex gap-3 hover:border-primary/30 transition-all duration-300 shadow-xs cursor-pointer">
+              <div className="w-9 h-9 rounded-xl bg-card border border-border flex items-center justify-center text-base shrink-0">🎧</div>
               <div>
-                <h4 className="font-heading font-bold text-sm text-foreground">Podcast &quot;Học cách thở ôm&quot;</h4>
-                <p className="text-xs text-foreground-secondary mt-1 leading-relaxed">Podcast hướng dẫn thiền định và xoa dịu lo âu kỳ thi dài 15 phút.</p>
-                <span className="text-[10px] text-primary font-bold uppercase tracking-wider block mt-3">Nghe Podcast</span>
+                <h4 className="font-heading font-bold text-xs text-foreground">Podcast &quot;Học cách thở ôm&quot;</h4>
+                <p className="text-[10px] text-foreground-secondary mt-1 leading-relaxed">Podcast hướng dẫn thiền định và xoa dịu lo âu kỳ thi dài 15 phút.</p>
+                <span className="text-[9px] text-primary font-bold uppercase tracking-wider block mt-2.5">Nghe Podcast</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-background-alt border border-border flex gap-4 hover:border-primary/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-lg shrink-0">📖</div>
+            <div className="p-5 rounded-2xl bg-background-alt border border-border/80 flex gap-3 hover:border-primary/30 transition-all duration-300 shadow-xs cursor-pointer">
+              <div className="w-9 h-9 rounded-xl bg-card border border-border flex items-center justify-center text-base shrink-0">📖</div>
               <div>
-                <h4 className="font-heading font-bold text-sm text-foreground">Ebook &quot;Giải mã Gen Z&quot;</h4>
-                <p className="text-xs text-foreground-secondary mt-1 leading-relaxed">Tài liệu giúp phụ huynh thấu hiểu thế giới của con trong kỷ nguyên số.</p>
-                <span className="text-[10px] text-secondary font-bold uppercase tracking-wider block mt-3">Tải Ebook (PDF)</span>
+                <h4 className="font-heading font-bold text-xs text-foreground">Ebook &quot;Giải mã Gen Z&quot;</h4>
+                <p className="text-[10px] text-foreground-secondary mt-1 leading-relaxed">Tài liệu giúp phụ huynh thấu hiểu thế giới của con trong kỷ nguyên số.</p>
+                <span className="text-[9px] text-secondary font-bold uppercase tracking-wider block mt-2.5">Tải Ebook (PDF)</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-background-alt border border-border flex gap-4 hover:border-primary/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-lg shrink-0">📋</div>
+            <div className="p-5 rounded-2xl bg-background-alt border border-border/80 flex gap-3 hover:border-primary/30 transition-all duration-300 shadow-xs cursor-pointer">
+              <div className="w-9 h-9 rounded-xl bg-card border border-border flex items-center justify-center text-base shrink-0">📋</div>
               <div>
-                <h4 className="font-heading font-bold text-sm text-foreground">Checklist &quot;Cắt giảm lo âu&quot;</h4>
-                <p className="text-xs text-foreground-secondary mt-1 leading-relaxed">Bảng theo dõi cảm xúc hàng ngày giúp bạn duy trì cân bằng cuộc sống.</p>
-                <span className="text-[10px] text-secondary font-bold uppercase tracking-wider block mt-3">Tải Checklist</span>
+                <h4 className="font-heading font-bold text-xs text-foreground">Checklist &quot;Cắt giảm lo âu&quot;</h4>
+                <p className="text-[10px] text-foreground-secondary mt-1 leading-relaxed">Bảng theo dõi cảm xúc hàng ngày giúp bạn duy trì cân bằng cuộc sống.</p>
+                <span className="text-[9px] text-secondary font-bold uppercase tracking-wider block mt-2.5">Tải Checklist</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-background-section border border-border flex gap-4 hover:border-primary/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-lg shrink-0">🎬</div>
+            <div className="p-5 rounded-2xl bg-background-section border border-border/80 flex gap-3 hover:border-primary/30 transition-all duration-300 shadow-xs cursor-pointer">
+              <div className="w-9 h-9 rounded-xl bg-card border border-border flex items-center justify-center text-base shrink-0">🎬</div>
               <div>
-                <h4 className="font-heading font-bold text-sm text-foreground">Video thiền chánh niệm học đường</h4>
-                <p className="text-xs text-foreground-secondary mt-1 leading-relaxed">Loạt video hướng dẫn các động tác kéo giãn cơ thể giảm căng thẳng.</p>
-                <span className="text-[10px] text-primary font-bold uppercase tracking-wider block mt-3">Xem Video</span>
+                <h4 className="font-heading font-bold text-xs text-foreground">Video thiền chánh niệm học đường</h4>
+                <p className="text-[10px] text-foreground-secondary mt-1 leading-relaxed">Loạt video hướng dẫn các động tác kéo giãn cơ thể giảm căng thẳng.</p>
+                <span className="text-[9px] text-primary font-bold uppercase tracking-wider block mt-2.5">Xem Video</span>
               </div>
             </div>
 
           </div>
-
         </div>
       </motion.section>
 
-      {/* 9. BLOG SECTION */}
+      {/* 9. BLOG SECTION - Featured 1 Big + 2 Small Grid */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
         className="bg-background-secondary py-20 transition-colors"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">
-                {language === "vi" ? "GÓC CHIA SẺ CẢM XÚC" : "LATEST ARTICLES"}
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="max-w-lg">
+              <span className="section-label text-primary">
+                {language === "vi" ? "GÓC SẺ CHIA" : "WELLNESS INSIGHTS"}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-                {language === "vi" ? "Bài viết nổi bật từ chuyên gia" : "Expert articles & wellness blogs"}
+              <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+                {language === "vi" ? "Góc nhìn chuyên sâu và kiến thức bổ ích" : "Expert Articles on Well-being"}
               </h2>
             </div>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline shrink-0"
             >
               <span>{language === "vi" ? "Xem tất cả bài viết" : "Read All Blogs"}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogs.map((b) => (
+          {/* Featured + Grid layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left Column: 1 Featured Big Blog */}
+            {blogs.slice(0, 1).map((b) => (
               <div 
                 key={b.slug}
-                className="bg-card border border-border rounded-3xl p-6 shadow-premium hover:border-primary/45 transition-all flex flex-col justify-between"
+                className="lg:col-span-6 bg-card border border-border/80 rounded-3xl p-6 shadow-sm hover:border-primary/45 transition-all duration-300 hover:shadow-md flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-background-secondary border border-border flex items-center justify-center mb-4">
+                  <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-background-secondary border border-border/60 mb-5">
                     {b.image.startsWith("/") ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img src={b.image} alt={b.title} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-2xl">{b.image}</span>
+                      <span className="text-4xl flex items-center justify-center h-full">{b.image}</span>
                     )}
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary text-[10px] font-bold uppercase tracking-wider">
+                    <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[8px] font-bold uppercase tracking-wider">
                       {b.category}
                     </span>
-                    <span className="text-[10px] text-foreground-secondary">{b.date}</span>
+                    <span className="text-[9px] text-foreground-secondary font-medium">{b.date}</span>
                   </div>
 
-                  <h3 className="font-heading font-bold text-base text-foreground mb-3 leading-snug line-clamp-2">
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-foreground mb-3 leading-snug">
                     {b.title}
                   </h3>
 
@@ -850,13 +839,12 @@ export default function HomePage() {
                 </div>
 
                 <div className="border-t border-divider pt-4 flex items-center justify-between mt-auto">
-                  <span className="text-[10px] text-foreground-secondary font-semibold uppercase tracking-wider">
+                  <span className="text-[9px] text-foreground-secondary font-bold uppercase tracking-wider">
                     {b.author}
                   </span>
-                  
                   <Link
                     href={`/blog/${b.slug}`}
-                    className="inline-flex items-center gap-1.5 text-primary text-xs font-bold hover:underline"
+                    className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline"
                   >
                     <span>{language === "vi" ? "Đọc tiếp" : "Read Article"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -864,91 +852,143 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+
+            {/* Right Column: 2 Small Blogs stacked */}
+            <div className="lg:col-span-6 flex flex-col gap-6">
+              {blogs.slice(1, 3).map((b) => (
+                <div 
+                  key={b.slug}
+                  className="bg-card border border-border/80 rounded-3xl p-5 shadow-sm hover:border-primary/45 transition-all duration-300 hover:shadow-md flex flex-col justify-between flex-1"
+                >
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[8px] font-bold uppercase tracking-wider">
+                        {b.category}
+                      </span>
+                      <span className="text-[9px] text-foreground-secondary font-medium">{b.date}</span>
+                    </div>
+
+                    <h3 className="font-heading font-bold text-sm text-foreground mb-2 leading-snug line-clamp-2">
+                      {b.title}
+                    </h3>
+
+                    <p className="text-[11px] text-foreground-secondary leading-relaxed line-clamp-2 mb-4">
+                      {b.summary}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-divider pt-3 flex items-center justify-between mt-auto">
+                    <span className="text-[9px] text-foreground-secondary font-bold uppercase tracking-wider">
+                      {b.author}
+                    </span>
+                    <Link
+                      href={`/blog/${b.slug}`}
+                      className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline"
+                    >
+                      <span>{language === "vi" ? "Đọc tiếp" : "Read Article"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
 
-      {/* 10. INSPIRING STORIES (TESTIMONIALS) */}
+      {/* 10. INSPIRING STORIES (TESTIMONIALS) - Alternating Large Quotes */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold text-secondary tracking-wider uppercase subheading">
-            {language === "vi" ? "CÂU CHUYỆN TRUYỀN CẢM HỨNG" : "STUDENT SUCCESS STORIES"}
+          <span className="section-label text-secondary justify-center">
+            {language === "vi" ? "KÝ ỨC CHỮA LÀNH" : "TESTIMONIALS OF HOPE"}
           </span>
-          <h2 className="text-3xl font-extrabold text-foreground mt-3">
-            {language === "vi" ? "Những bước chuyển mình ấm áp" : "Warm words of healing and trust"}
+          <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+            {language === "vi" ? "Những trải nghiệm thay đổi cuộc sống" : "Echoes of Growth & Healing"}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="p-8 rounded-3xl bg-background-section border border-border shadow-premium relative">
-              <span className="absolute top-6 right-8 text-6xl text-primary/10 font-serif leading-none select-none">&quot;</span>
-              <p className="text-sm text-foreground leading-relaxed italic relative z-10 mb-6">
-                &ldquo;{language === "vi" ? t.quoteVi : t.quoteEn}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                {/* Replacing simple emoji avatars with actual rounded visual photo elements */}
-                <div className="w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">
+        <div className="flex flex-col gap-10">
+          {testimonials.map((t, idx) => {
+            const isAlt = idx % 2 === 1;
+            return (
+              <div 
+                key={idx} 
+                className={`p-6 sm:p-8 rounded-[2rem] border border-border/80 shadow-xs relative flex flex-col md:flex-row items-center gap-6 max-w-4xl mx-auto ${
+                  isAlt ? "bg-background-section/60" : "bg-card"
+                }`}
+              >
+                {/* Author Avatar Left */}
+                <div className="w-14 h-14 rounded-full overflow-hidden border border-border shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={t.relation === "Student" ? "/hero.png" : "/parent.png"}
                     alt={t.author}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div>
-                  <span className="block text-xs text-foreground font-bold">{t.author}</span>
-                  <span className="block text-[10px] text-foreground-secondary uppercase tracking-wider">{t.relation}</span>
+
+                <div className="flex-1 text-center md:text-left">
+                  <span className="absolute top-4 right-6 text-5xl text-primary/10 font-serif leading-none select-none">&quot;</span>
+                  <p className="text-xs sm:text-sm text-foreground leading-relaxed italic mb-4">
+                    &ldquo;{language === "vi" ? t.quoteVi : t.quoteEn}&rdquo;
+                  </p>
+                  <div>
+                    <span className="block text-xs text-foreground font-bold">{t.author}</span>
+                    <span className="block text-[9px] text-foreground-secondary uppercase tracking-wider mt-0.5">{t.relation}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </motion.section>
 
-      {/* 11. FAQ ACCORDION */}
+      {/* 11. FAQ ACCORDION - 2-Column Responsive Layout */}
       <motion.section 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
         <div className="text-center mb-12">
-          <span className="text-xs font-bold text-primary tracking-wider uppercase subheading">{language === "vi" ? "CÂU HỎI THƯỜNG GẶP" : "FAQ"}</span>
-          <h2 className="text-3xl font-extrabold text-foreground mt-3">
-            {language === "vi" ? "Giải đáp thắc mắc của bạn" : "Frequently Asked Questions"}
+          <span className="section-label text-primary justify-center">
+            {language === "vi" ? "GIẢI ĐÁP THẮC MẮC" : "FAQ"}
+          </span>
+          <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
+            {language === "vi" ? "Những băn khoăn thường gặp" : "Common Clarifications"}
           </h2>
         </div>
 
-        <div className="space-y-4">
+        {/* 2-column FAQ layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           {faqs.map((faq, idx) => {
             const isOpen = activeFaq === idx;
             return (
               <div 
                 key={idx}
-                className="bg-card border border-border rounded-2xl overflow-hidden transition-all shadow-premium"
+                className="bg-card border border-border/80 rounded-2xl overflow-hidden transition-all shadow-xs"
               >
                 <button
                   onClick={() => setActiveFaq(isOpen ? null : idx)}
-                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-heading font-bold text-sm text-foreground hover:bg-background-secondary transition-colors"
+                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-3 font-heading font-bold text-xs sm:text-sm text-foreground hover:bg-background-secondary transition-colors"
                 >
                   <span>{language === "vi" ? faq.qVi : faq.qEn}</span>
-                  <ChevronRight className={`w-5 h-5 text-foreground-secondary shrink-0 transition-transform ${
+                  <ChevronRight className={`w-4 h-4 text-foreground-secondary shrink-0 transition-transform ${
                     isOpen ? "rotate-90 text-primary" : ""
                   }`} />
                 </button>
                 
                 <div className={`transition-all duration-300 ${
-                  isOpen ? "max-h-[200px] border-t border-divider opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                  isOpen ? "max-h-[220px] border-t border-divider opacity-100" : "max-h-0 opacity-0 pointer-events-none"
                 }`}>
-                  <p className="px-6 py-5 text-xs text-foreground-secondary leading-relaxed">
+                  <p className="px-5 py-4 text-xs text-foreground-secondary leading-relaxed bg-background-section/40">
                     {language === "vi" ? faq.aVi : faq.aEn}
                   </p>
                 </div>
@@ -958,42 +998,42 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* 12. FINAL APPOINTMENT CTA */}
+      {/* 12. FINAL APPOINTMENT CTA - Enhanced Banner */}
       <motion.section 
         initial={{ opacity: 0, scale: 0.98, y: 20 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-120px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 sm:px-8 w-full"
       >
-        <div className="p-8 md:p-16 rounded-[2.5rem] bg-gradient-to-tr from-primary via-primary/95 to-secondary text-white text-center shadow-premium relative overflow-hidden">
-          {/* Background shapes */}
-          <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-white/5 blur-2xl" />
-          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-white/10 blur-2xl" />
+        <div className="p-8 md:p-14 rounded-[2rem] bg-gradient-to-tr from-primary via-primary/95 to-secondary text-white text-center shadow-md relative overflow-hidden">
+          {/* Background circles */}
+          <div className="absolute top-0 left-0 w-52 h-52 rounded-full bg-white/5 blur-2xl" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-white/10 blur-2xl" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-accent tracking-wider uppercase subheading block mb-4">
-              {language === "vi" ? "CHÚNG TÔI LUÔN Ở ĐÂY ĐỂ ĐỒNG HÀNH CÙNG BẠN" : "WE ARE ALWAYS HERE FOR YOU"}
+            <span className="text-[10px] font-bold text-accent tracking-wider uppercase block mb-3">
+              {language === "vi" ? "MINDCARE LUÔN LẮNG NGHE BẠN" : "WE ARE HERE TO ACCCOMPANY YOU"}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
-              {language === "vi" ? "Bắt đầu hành trình cân bằng tinh thần ngay hôm nay" : "Take the first step towards a peaceful mind"}
+            <h2 className="text-h1 font-bold tracking-tight mb-5 leading-[1.1]">
+              {language === "vi" ? "Mở cánh cửa bình yên cho tâm hồn của bạn" : "Unlock a Peaceful Mind Today"}
             </h2>
-            <p className="text-sm text-white/80 leading-relaxed mb-8 max-w-[55ch] mx-auto">
+            <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-8 max-w-[50ch] mx-auto">
               {language === "vi"
-                ? "Dành thời gian chăm sóc tâm trí là khoản đầu tư tốt nhất cho tương lai học tập và cuộc sống của bạn."
-                : "Caring for your mind is the best investment you can make for your future studies and health."}
+                ? "Lắng nghe bản thân và dành thời gian nuôi dưỡng tâm trí chính là chiếc chìa khóa mở ra tương lai rạng rỡ."
+                : "Tuning in to your emotional needs and investing in self-care paves the way for a brighter academic future."}
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3">
               <Link
                 href="/booking"
-                className="bg-white text-primary hover:bg-white/95 px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg transition-all"
+                className="bg-white text-primary hover:bg-white/95 px-7 py-3 rounded-xl font-bold text-xs shadow-md transition-all"
               >
                 {language === "vi" ? "Đặt lịch trò chuyện 1-1" : "Book a 1-1 Chat"}
               </Link>
               <Link
                 href="/assessment"
-                className="bg-transparent border border-white/30 hover:border-white text-white px-8 py-3.5 rounded-2xl font-bold text-sm transition-all"
+                className="bg-transparent border border-white/20 hover:border-white text-white px-7 py-3 rounded-xl font-bold text-xs transition-all"
               >
                 {language === "vi" ? "Làm đánh giá tâm lý" : "Start Wellness Screening"}
               </Link>

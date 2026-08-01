@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppState } from "@/context/AppContext";
 import { 
-  Heart, Sun, Moon, Globe, Menu, X, User, Bell, ChevronDown, LogIn, LayoutDashboard
+  Sun, Moon, Globe, Menu, X, Bell, ChevronDown, LogIn, LayoutDashboard, ArrowRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,18 +20,21 @@ export const Header: React.FC = () => {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
 
-  // Monitor scroll for header background blur effect
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { href: "/", labelVi: "Trang chủ", labelEn: "Home" },
@@ -60,256 +63,290 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-[100] transition-all duration-300 ${
-      isScrolled ? "glass shadow-premium py-3" : "bg-transparent py-5"
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <img 
-            src="/thpt-tam-hiep-logo.png" 
-            alt="Trường THPT Tam Hiệp" 
-            className="w-10 h-10 object-contain rounded-full bg-white p-0.5 shadow-premium border border-border/40 shrink-0 group-hover:scale-105 transition-transform duration-300"
-          />
-          <div>
-            <span className="font-heading font-bold text-xl tracking-tight text-foreground">
-              MindCare
-            </span>
-            <span className="block text-[10px] text-secondary font-bold tracking-wider uppercase -mt-1 subheading">
-              School
-            </span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  isActive 
-                    ? "text-primary bg-primary/5 dark:bg-primary/10" 
-                    : "text-foreground-secondary hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5"
-                }`}
-              >
-                {language === "vi" ? link.labelVi : link.labelEn}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Right Side Actions */}
-        <div className="hidden lg:flex items-center gap-3">
+    <>
+      <header className="sticky top-0 z-[100] w-full flex justify-center px-4 pt-3 pointer-events-none">
+        <div className={`w-full max-w-6xl flex items-center justify-between transition-all duration-500 pointer-events-auto ${
+          isScrolled 
+            ? "glass-strong shadow-md py-2 px-5 rounded-2xl" 
+            : "bg-transparent py-3 px-2"
+        }`}>
           
-          {/* Active Role Selector (Perspective Switcher) */}
-          <div className="relative">
-            <button
-              onClick={() => {
-                setRoleDropdownOpen(!roleDropdownOpen);
-                setLangDropdownOpen(false);
-              }}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-semibold shadow-sm hover:border-primary/50 transition-all"
-            >
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span>{language === "vi" ? "Góc nhìn:" : "Role:"} {getRoleLabel(role)}</span>
-              <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-            </button>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+            <div className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/thpt-tam-hiep-logo.png" 
+                alt="Trường THPT Tam Hiệp" 
+                className="w-9 h-9 object-contain rounded-xl bg-white p-0.5 shadow-sm border border-border/30 group-hover:shadow-md transition-all duration-300"
+              />
+            </div>
+            <span className="font-heading font-bold text-lg tracking-tight">
+              <span className="gradient-text">Mind</span>
+              <span className="text-foreground">Care</span>
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-0.5">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 group/link ${
+                    isActive 
+                      ? "text-primary" 
+                      : "text-foreground-secondary hover:text-foreground"
+                  }`}
+                >
+                  {language === "vi" ? link.labelVi : link.labelEn}
+                  {/* Underline indicator */}
+                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-primary transition-all duration-300 ${
+                    isActive ? "w-4" : "w-0 group-hover/link:w-4"
+                  }`} />
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right Side Actions */}
+          <div className="hidden lg:flex items-center gap-1.5">
             
-            <AnimatePresence>
-              {roleDropdownOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setRoleDropdownOpen(false)} />
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-xl shadow-premium z-20 overflow-hidden"
-                  >
-                    {(["guest", "student", "parent", "specialist"] as const).map((r) => (
+            {/* Role Selector */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setRoleDropdownOpen(!roleDropdownOpen);
+                  setLangDropdownOpen(false);
+                }}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-foreground-secondary hover:text-foreground hover:bg-background-secondary/60 transition-all"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                <span>{getRoleLabel(role)}</span>
+                <ChevronDown className="w-3 h-3 opacity-50" />
+              </button>
+              
+              <AnimatePresence>
+                {roleDropdownOpen && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setRoleDropdownOpen(false)} />
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-44 bg-card border border-border/60 rounded-xl shadow-lg z-20 overflow-hidden p-1"
+                    >
+                      {(["guest", "student", "parent", "specialist"] as const).map((r) => (
+                        <button
+                          key={r}
+                          onClick={() => {
+                            setRole(r);
+                            setRoleDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-between ${
+                            role === r ? "text-primary bg-primary/5" : "text-foreground-secondary hover:bg-background-secondary/60 hover:text-foreground"
+                          }`}
+                        >
+                          {getRoleLabel(r)}
+                          {role === r && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-4 bg-border/60 mx-1" />
+
+            {/* Language Toggle */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setLangDropdownOpen(!langDropdownOpen);
+                  setRoleDropdownOpen(false);
+                }}
+                className="p-1.5 rounded-lg text-foreground-secondary hover:text-foreground hover:bg-background-secondary/60 transition-all"
+                aria-label="Language options"
+              >
+                <Globe className="w-4 h-4" />
+              </button>
+              <AnimatePresence>
+                {langDropdownOpen && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setLangDropdownOpen(false)} />
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-36 bg-card border border-border/60 rounded-xl shadow-lg z-20 overflow-hidden p-1"
+                    >
                       <button
-                        key={r}
-                        onClick={() => {
-                          setRole(r);
-                          setRoleDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-background-secondary flex items-center justify-between ${
-                          role === r ? "text-primary font-bold bg-primary/5" : "text-foreground-secondary"
+                        onClick={() => { setLanguage("vi"); setLangDropdownOpen(false); }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                          language === "vi" ? "text-primary bg-primary/5" : "text-foreground-secondary hover:bg-background-secondary/60"
                         }`}
                       >
-                        {getRoleLabel(r)}
-                        {role === r && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
+                        🇻🇳 Tiếng Việt
                       </button>
-                    ))}
-                  </motion.div>
-                </>
-              )}
-            </AnimatePresence>
-          </div>
+                      <button
+                        onClick={() => { setLanguage("en"); setLangDropdownOpen(false); }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                          language === "en" ? "text-primary bg-primary/5" : "text-foreground-secondary hover:bg-background-secondary/60"
+                        }`}
+                      >
+                        🇺🇸 English
+                      </button>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
 
-          {/* Language Toggle */}
-          <div className="relative">
+            {/* Dark Mode */}
             <button
-              onClick={() => {
-                setLangDropdownOpen(!langDropdownOpen);
-                setRoleDropdownOpen(false);
-              }}
-              className="p-2 rounded-lg hover:bg-background-secondary text-foreground-secondary hover:text-foreground transition-colors"
-              aria-label="Language options"
+              onClick={toggleDarkMode}
+              className="p-1.5 rounded-lg text-foreground-secondary hover:text-foreground hover:bg-background-secondary/60 transition-all"
+              aria-label="Toggle dark mode"
             >
-              <Globe className="w-4 h-4" />
+              {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
             </button>
-            <AnimatePresence>
-              {langDropdownOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setLangDropdownOpen(false)} />
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-2 w-32 bg-card border border-border rounded-xl shadow-premium z-20 overflow-hidden"
-                  >
-                    <button
-                      onClick={() => {
-                        setLanguage("vi");
-                        setLangDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2.5 text-xs font-semibold ${
-                        language === "vi" ? "text-primary bg-primary/5" : "text-foreground-secondary hover:bg-background-secondary"
-                      }`}
-                    >
-                      Tiếng Việt (VI)
-                    </button>
-                    <button
-                      onClick={() => {
-                        setLanguage("en");
-                        setLangDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2.5 text-xs font-semibold ${
-                        language === "en" ? "text-primary bg-primary/5" : "text-foreground-secondary hover:bg-background-secondary"
-                      }`}
-                    >
-                      English (EN)
-                    </button>
-                  </motion.div>
-                </>
-              )}
-            </AnimatePresence>
+
+            {/* Notifications */}
+            {role !== "guest" && (
+              <Link
+                href="/notifications"
+                className="p-1.5 rounded-lg text-foreground-secondary hover:text-foreground hover:bg-background-secondary/60 transition-all relative"
+              >
+                <Bell className="w-4 h-4" />
+                <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-highlight" />
+              </Link>
+            )}
+
+            {/* Divider */}
+            <div className="w-px h-4 bg-border/60 mx-1" />
+
+            {/* Auth / Dashboard CTA */}
+            {role === "guest" ? (
+              <Link
+                href="/auth/login"
+                className="flex items-center gap-1.5 bg-primary text-white px-4 py-1.5 rounded-xl text-xs font-semibold hover:bg-primary/90 transition-all shadow-sm hover:shadow-md"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>{language === "vi" ? "Đăng nhập" : "Sign In"}</span>
+              </Link>
+            ) : (
+              <Link
+                href={getDashboardLink(role)}
+                className="flex items-center gap-1.5 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1.5 rounded-xl text-xs font-semibold hover:shadow-glow-sm transition-all shadow-sm"
+              >
+                <LayoutDashboard className="w-3.5 h-3.5" />
+                <span>Dashboard</span>
+              </Link>
+            )}
+
+            {/* Profile Avatar */}
+            {role !== "guest" && (
+              <Link
+                href="/profile"
+                className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-xs hover:bg-primary/20 transition-all border border-primary/20"
+                title={userProfile.name}
+              >
+                {userProfile.name.charAt(0)}
+              </Link>
+            )}
+
           </div>
 
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg hover:bg-background-secondary text-foreground-secondary hover:text-foreground transition-colors"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
-          </button>
-
-          {/* Notifications Indicator if logged in */}
-          {role !== "guest" && (
-            <Link
-              href="/notifications"
-              className="p-2 rounded-lg hover:bg-background-secondary text-foreground-secondary hover:text-foreground transition-colors relative"
+          {/* Mobile menu trigger */}
+          <div className="flex lg:hidden items-center gap-1.5">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg text-foreground-secondary hover:bg-background-secondary/60 transition-all"
+              aria-label="Toggle dark mode"
             >
-              <Bell className="w-4 h-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-highlight" />
-            </Link>
-          )}
-
-          {/* Auth Button or Dashboard Button */}
-          {role === "guest" ? (
-            <Link
-              href="/auth/login"
-              className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-primary/95 transition-all shadow-premium"
+              {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
+            </button>
+            
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg text-foreground hover:bg-background-secondary/60 transition-all"
+              aria-label="Open menu"
             >
-              <LogIn className="w-4 h-4" />
-              <span>{language === "vi" ? "Đăng nhập" : "Sign In"}</span>
-            </Link>
-          ) : (
-            <Link
-              href={getDashboardLink(role)}
-              className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:shadow-lg transition-all shadow-premium"
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>{language === "vi" ? "Dashboard" : "Panel"}</span>
-            </Link>
-          )}
-
-          {/* Profile Avatars if not guest */}
-          {role !== "guest" && (
-            <Link
-              href="/profile"
-              className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-sm hover:bg-primary/20 transition-all border border-primary/20"
-              title={userProfile.name}
-            >
-              {userProfile.name.charAt(0)}
-            </Link>
-          )}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
 
         </div>
+      </header>
 
-        {/* Mobile menu trigger */}
-        <div className="flex lg:hidden items-center gap-2">
-          {/* Quick toggle Dark mode on mobile */}
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg hover:bg-background-secondary text-foreground-secondary"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
-          </button>
-          
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-background-secondary text-foreground"
-            aria-label="Open menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-      </div>
-
-      {/* Mobile Menu Drawer */}
+      {/* Full-screen Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-b border-border overflow-hidden px-4 py-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[99] bg-background/95 backdrop-blur-xl flex flex-col lg:hidden"
           >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                      isActive 
-                        ? "text-primary bg-primary/5 dark:bg-primary/10" 
-                        : "text-foreground-secondary hover:text-foreground hover:bg-background-secondary"
-                    }`}
-                  >
-                    {language === "vi" ? link.labelVi : link.labelEn}
-                  </Link>
-                );
-              })}
-              
-              <hr className="my-2 border-border" />
+            {/* Close bar */}
+            <div className="flex items-center justify-between px-6 pt-5 pb-4">
+              <span className="font-heading font-bold text-lg">
+                <span className="gradient-text">Mind</span>
+                <span className="text-foreground">Care</span>
+              </span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-xl bg-background-secondary/50 text-foreground"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-              {/* Perspective Role switcher mobile */}
-              <div className="px-4 py-2">
-                <span className="text-xs text-foreground-secondary block mb-1">
-                  {language === "vi" ? "Chọn vai trò trải nghiệm:" : "Select perspective role:"}
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto px-6 pb-6">
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link, idx) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.04, duration: 0.3 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-[15px] font-semibold transition-all ${
+                          isActive 
+                            ? "text-primary bg-primary/5" 
+                            : "text-foreground hover:bg-background-secondary/50"
+                        }`}
+                      >
+                        <span>{language === "vi" ? link.labelVi : link.labelEn}</span>
+                        <ArrowRight className={`w-4 h-4 opacity-30 ${isActive ? "opacity-60 text-primary" : ""}`} />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              
+              {/* Divider */}
+              <div className="my-5 h-px bg-border/40" />
+
+              {/* Role switcher */}
+              <div className="px-4">
+                <span className="text-[11px] font-semibold text-foreground-secondary uppercase tracking-wider">
+                  {language === "vi" ? "Vai trò" : "Role"}
                 </span>
-                <div className="grid grid-cols-2 gap-2 mt-1.5">
+                <div className="grid grid-cols-2 gap-2 mt-3">
                   {(["guest", "student", "parent", "specialist"] as const).map((r) => (
                     <button
                       key={r}
@@ -317,10 +354,10 @@ export const Header: React.FC = () => {
                         setRole(r);
                         setMobileMenuOpen(false);
                       }}
-                      className={`py-1.5 px-3 rounded-lg border text-center text-xs font-semibold transition-all ${
+                      className={`py-2.5 px-3 rounded-xl border text-center text-xs font-semibold transition-all ${
                         role === r 
                           ? "border-primary text-primary bg-primary/5" 
-                          : "border-border text-foreground-secondary hover:bg-background-secondary"
+                          : "border-border/60 text-foreground-secondary hover:bg-background-secondary/50"
                       }`}
                     >
                       {getRoleLabel(r)}
@@ -329,11 +366,11 @@ export const Header: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action buttons mobile */}
-              <div className="flex items-center gap-3 mt-4 px-4">
+              {/* Bottom actions */}
+              <div className="flex items-center gap-3 mt-6 px-4">
                 <button
                   onClick={() => setLanguage(language === "vi" ? "en" : "vi")}
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-border text-xs font-bold text-foreground-secondary hover:bg-background-secondary"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-border/60 text-xs font-bold text-foreground-secondary hover:bg-background-secondary/50 transition-all"
                 >
                   <Globe className="w-4 h-4" />
                   <span>{language === "vi" ? "English" : "Tiếng Việt"}</span>
@@ -343,7 +380,7 @@ export const Header: React.FC = () => {
                   <Link
                     href="/auth/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2.5 px-4 rounded-xl text-xs font-bold text-center shadow-premium"
+                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-3 px-4 rounded-xl text-xs font-bold shadow-sm"
                   >
                     <LogIn className="w-4 h-4" />
                     <span>{language === "vi" ? "Đăng nhập" : "Sign In"}</span>
@@ -352,17 +389,17 @@ export const Header: React.FC = () => {
                   <Link
                     href={getDashboardLink(role)}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-secondary text-white py-2.5 px-4 rounded-xl text-xs font-bold text-center shadow-premium"
+                    className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-xl text-xs font-bold shadow-sm"
                   >
                     <LayoutDashboard className="w-4 h-4" />
                     <span>Dashboard</span>
                   </Link>
                 )}
               </div>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
