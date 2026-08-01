@@ -848,26 +848,32 @@ export default function HomePage() {
             {blogs.slice(0, 1).map((b) => (
               <div 
                 key={b.slug}
-                className="lg:col-span-6 bg-card border border-border/80 rounded-3xl p-6 shadow-sm hover:border-primary/45 transition-all duration-300 hover:shadow-md flex flex-col justify-between h-full"
+                className="group lg:col-span-7 bg-card border border-border/80 rounded-[2rem] p-6 shadow-sm hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 hover:shadow-glow-sm flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-background-secondary border border-border/60 mb-5">
+                  <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-background-secondary border border-border/60 mb-5 relative">
                     {b.image.startsWith("/") ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={b.image} alt={b.title} className="w-full h-full object-cover" />
+                      <img 
+                        src={b.image} 
+                        alt={b.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      />
                     ) : (
                       <span className="text-4xl flex items-center justify-center h-full">{b.image}</span>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center gap-2.5 mb-3">
                     <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[8px] font-bold uppercase tracking-wider">
                       {b.category}
                     </span>
-                    <span className="text-[9px] text-foreground-secondary font-medium">{b.date}</span>
+                    <span className="text-[9px] text-foreground-secondary font-medium">
+                      {b.date} • {b.readTime}
+                    </span>
                   </div>
 
-                  <h3 className="font-heading font-bold text-base sm:text-lg text-foreground mb-3 leading-snug">
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-foreground mb-3 leading-snug group-hover:text-primary transition-colors duration-300">
                     {b.title}
                   </h3>
 
@@ -882,50 +888,66 @@ export default function HomePage() {
                   </span>
                   <Link
                     href={`/blog/${b.slug}`}
-                    className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline"
+                    className="inline-flex items-center gap-1.5 text-primary text-xs font-bold hover:underline"
                   >
                     <span>{language === "vi" ? "Đọc tiếp" : "Read Article"}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>
             ))}
 
-            {/* Right Column: 2 Small Blogs stacked */}
-            <div className="lg:col-span-6 flex flex-col gap-6">
+            {/* Right Column: 2 Small Blogs stacked with small thumbnail images */}
+            <div className="lg:col-span-5 flex flex-col gap-6">
               {blogs.slice(1, 3).map((b) => (
                 <div 
                   key={b.slug}
-                  className="bg-card border border-border/80 rounded-3xl p-5 shadow-sm hover:border-primary/45 transition-all duration-300 hover:shadow-md flex flex-col justify-between flex-1"
+                  className="group bg-card border border-border/80 rounded-[2rem] p-5 shadow-sm hover:border-primary/30 hover:-translate-y-1.5 transition-all duration-500 hover:shadow-glow-xs flex flex-col sm:flex-row gap-5 cursor-pointer"
                 >
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[8px] font-bold uppercase tracking-wider">
-                        {b.category}
-                      </span>
-                      <span className="text-[9px] text-foreground-secondary font-medium">{b.date}</span>
-                    </div>
-
-                    <h3 className="font-heading font-bold text-sm text-foreground mb-2 leading-snug line-clamp-2">
-                      {b.title}
-                    </h3>
-
-                    <p className="text-[11px] text-foreground-secondary leading-relaxed line-clamp-2 mb-4">
-                      {b.summary}
-                    </p>
+                  {/* Thumbnail Image block */}
+                  <div className="w-full sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 bg-background-secondary border border-border/60 shadow-xs relative">
+                    {b.image.startsWith("/") ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img 
+                        src={b.image} 
+                        alt={b.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      />
+                    ) : (
+                      <span className="text-2xl flex items-center justify-center h-full">{b.image}</span>
+                    )}
                   </div>
 
-                  <div className="border-t border-divider pt-3 flex items-center justify-between mt-auto">
-                    <span className="text-[9px] text-foreground-secondary font-bold uppercase tracking-wider">
-                      {b.author}
-                    </span>
-                    <Link
-                      href={`/blog/${b.slug}`}
-                      className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline"
-                    >
-                      <span>{language === "vi" ? "Đọc tiếp" : "Read Article"}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[8px] font-bold uppercase tracking-wider">
+                          {b.category}
+                        </span>
+                        <span className="text-[9px] text-foreground-secondary font-medium">{b.date}</span>
+                      </div>
+
+                      <h3 className="font-heading font-bold text-sm text-foreground mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300">
+                        {b.title}
+                      </h3>
+
+                      <p className="text-[11px] text-foreground-secondary leading-relaxed line-clamp-2 mb-4">
+                        {b.summary}
+                      </p>
+                    </div>
+
+                    <div className="border-t border-divider pt-3 flex items-center justify-between mt-auto">
+                      <span className="text-[9px] text-foreground-secondary font-bold uppercase tracking-wider">
+                        {b.author}
+                      </span>
+                      <Link
+                        href={`/blog/${b.slug}`}
+                        className="inline-flex items-center gap-1.5 text-primary text-xs font-bold hover:underline"
+                      >
+                        <span>{language === "vi" ? "Đọc tiếp" : "Read Article"}</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
