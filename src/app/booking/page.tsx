@@ -133,7 +133,14 @@ function BookingContent() {
                         : "border-border text-foreground-secondary hover:bg-background-secondary"
                     }`}
                   >
-                    <span className="text-2xl shrink-0">{sp.avatar}</span>
+                    <div className="w-8 h-8 rounded-lg overflow-hidden border border-border shrink-0 bg-background-secondary shadow-xs">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={sp.avatar} 
+                        alt={sp.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <div className="flex-1">
                       <span className="block font-bold text-foreground text-xs leading-snug">{sp.name}</span>
                       <span className="block text-[10px] text-foreground-secondary leading-tight mt-0.5">{sp.experience}</span>
@@ -264,8 +271,13 @@ function BookingContent() {
           {/* Selected Specialist details */}
           {selectedSpecialist ? (
             <div className="flex gap-3 items-center">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 text-2xl flex items-center justify-center shrink-0">
-                {selectedSpecialist.avatar}
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-primary/15 shrink-0 bg-background-secondary shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={selectedSpecialist.avatar} 
+                  alt={selectedSpecialist.name} 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <span className="block text-xs font-bold text-foreground">{selectedSpecialist.name}</span>

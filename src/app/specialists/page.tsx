@@ -85,16 +85,22 @@ export default function SpecialistsPage() {
           filteredSpecialists.map((sp) => (
             <div 
               key={sp.id}
-              className="bg-card border border-border p-6 rounded-3xl shadow-premium hover:border-primary/45 transition-all flex flex-col justify-between"
+              className="group bg-card border border-border p-6 rounded-[2rem] shadow-premium hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 hover:shadow-glow-sm flex flex-col justify-between"
             >
               <div>
                 {/* Header Profile */}
                 <div className="flex gap-4 items-start mb-4">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 text-3xl flex items-center justify-center shrink-0">
-                    {sp.avatar}
+                  {/* Portrait Avatar Container with micro-animation */}
+                  <div className="w-16 h-16 rounded-full border-2 border-primary/15 overflow-hidden shrink-0 bg-background-secondary shadow-sm">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src={sp.avatar} 
+                      alt={sp.name} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-base text-foreground leading-snug">
+                    <h3 className="font-heading font-bold text-base text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
                       {sp.name}
                     </h3>
                     <span className="block text-[11px] text-foreground-secondary leading-normal mt-1">
@@ -145,7 +151,7 @@ export default function SpecialistsPage() {
                 
                 <Link
                   href={`/specialists/${sp.id}`}
-                  className="flex-1 bg-primary hover:bg-primary/95 text-white text-center py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all"
+                  className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary hover:to-secondary text-white text-center py-2.5 rounded-2xl text-xs font-bold shadow-sm transition-all duration-300 hover:shadow-glow-sm active:scale-95"
                 >
                   {language === "vi" ? "Đăng ký tham vấn" : "Book session"}
                 </Link>

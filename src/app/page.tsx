@@ -493,14 +493,20 @@ export default function HomePage() {
             {specialists.map((sp) => (
               <div 
                 key={sp.id}
-                className="min-w-[260px] md:min-w-0 bg-card border border-border/80 rounded-3xl p-5 shadow-sm flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 hover:shadow-md"
+                className="group min-w-[260px] md:min-w-0 bg-card border border-border/80 rounded-[2rem] p-6 shadow-sm flex flex-col justify-between hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 hover:shadow-glow-sm"
               >
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 text-2xl flex items-center justify-center mx-auto mb-3.5 border border-primary/15">
-                    {sp.avatar}
+                  {/* Portrait Avatar Container with micro-animation */}
+                  <div className="w-20 h-20 rounded-full border-2 border-primary/20 overflow-hidden mx-auto mb-4 relative shadow-sm bg-background-secondary">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src={sp.avatar} 
+                      alt={sp.name} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                   </div>
                   
-                  <h3 className="font-heading font-bold text-sm text-foreground mb-0.5">
+                  <h3 className="font-heading font-bold text-sm text-foreground mb-0.5 group-hover:text-primary transition-colors duration-300">
                     {sp.name}
                   </h3>
                   
@@ -508,7 +514,7 @@ export default function HomePage() {
                     {sp.experience}
                   </span>
 
-                  <p className="text-[10px] text-foreground-secondary leading-relaxed line-clamp-3 mb-4">
+                  <p className="text-[10px] text-foreground-secondary leading-relaxed line-clamp-3 mb-4 min-h-[4.5rem]">
                     {sp.bio}
                   </p>
 
@@ -521,7 +527,7 @@ export default function HomePage() {
 
                 <Link
                   href={`/specialists/${sp.id}`}
-                  className="w-full bg-primary hover:bg-primary/95 text-white text-center py-2 rounded-xl text-xs font-bold shadow-xs transition-all"
+                  className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary hover:to-secondary text-white text-center py-2.5 rounded-2xl text-xs font-bold shadow-sm transition-all duration-300 hover:shadow-glow-sm active:scale-95"
                 >
                   {language === "vi" ? "Xem hồ sơ & Đặt lịch" : "Profile & Booking"}
                 </Link>

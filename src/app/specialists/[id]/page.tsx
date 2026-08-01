@@ -67,8 +67,13 @@ export default function SpecialistProfilePage() {
       <section className="bg-card border border-border p-6 md:p-8 rounded-3xl shadow-premium flex flex-col md:flex-row gap-8 items-start">
         
         {/* Avatar block */}
-        <div className="w-24 h-24 rounded-2xl bg-primary/10 border border-primary/20 text-5xl flex items-center justify-center shrink-0 mx-auto md:mx-0">
-          {specialist.avatar}
+        <div className="w-24 h-24 rounded-2xl overflow-hidden border border-primary/20 shrink-0 mx-auto md:mx-0 bg-background-secondary shadow-sm">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src={specialist.avatar} 
+            alt={specialist.name} 
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
         </div>
 
         {/* Bio Info */}
