@@ -126,7 +126,11 @@ export default function HomePage() {
               {language === "vi" ? "GIỚI THIỆU NỀN TẢNG" : "WHO WE ARE"}
             </span>
             <h2 className="text-h2 font-bold tracking-tight text-foreground mt-4 leading-[1.15]">
-              {language === "vi" ? "Đồng hành hướng tới học đường an vui, vững tâm" : "Guiding the Next Generation Toward Peace"}
+              {language === "vi" ? (
+                <>Đồng hành hướng tới học đường <span className="gradient-text">an vui, vững tâm</span></>
+              ) : (
+                <>Guiding the Next Generation Toward <span className="gradient-text">Peace & Resilience</span></>
+              )}
             </h2>
             <p className="text-body text-foreground-secondary mt-5 leading-relaxed max-w-[45ch]">
               {language === "vi"
@@ -289,7 +293,11 @@ export default function HomePage() {
                 {language === "vi" ? "KHẢO SÁT TÂM LÝ" : "WELLNESS SCREENING"}
               </span>
               <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-                {language === "vi" ? "Giải mã mức độ áp lực học tập và thi cử" : "Is Academic Stress Holding You Back?"}
+                {language === "vi" ? (
+                  <>Giải mã mức độ <span className="gradient-text">áp lực học tập và thi cử</span></>
+                ) : (
+                  <>Is <span className="gradient-text">Academic Stress</span> Holding You Back?</>
+                )}
               </h2>
               <p className="text-body text-foreground-secondary mt-5 leading-relaxed">
                 {language === "vi"
@@ -352,7 +360,11 @@ export default function HomePage() {
             {language === "vi" ? "DỊCH VỤ HỖ TRỢ" : "OUR SERVICES"}
           </span>
           <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-            {language === "vi" ? "Các giải pháp hỗ trợ tâm lý chuyên nghiệp" : "Professional Psychological Support"}
+            {language === "vi" ? (
+              <>Các giải pháp <span className="gradient-text">hỗ trợ tâm lý chuyên nghiệp</span></>
+            ) : (
+              <>Professional <span className="gradient-text">Psychological Support</span></>
+            )}
           </h2>
           <p className="text-body text-foreground-secondary mt-4">
             {language === "vi"
@@ -460,7 +472,11 @@ export default function HomePage() {
                 {language === "vi" ? "ĐỘI NGŨ CHUYÊN GIA" : "OUR PSYCHOLOGISTS"}
               </span>
               <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-                {language === "vi" ? "Lắng nghe từ những chuyên gia thấu cảm" : "Nurtured by Qualified Specialists"}
+                {language === "vi" ? (
+                  <>Lắng nghe từ những <span className="gradient-text">chuyên gia thấu cảm</span></>
+                ) : (
+                  <>Nurtured by <span className="gradient-text">Qualified Specialists</span></>
+                )}
               </h2>
             </div>
             <Link
@@ -528,7 +544,11 @@ export default function HomePage() {
             {language === "vi" ? "QUY TRÌNH TƯ VẤN" : "CONSULTING WORKFLOW"}
           </span>
           <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-            {language === "vi" ? "Hành trình trợ giúp tinh thần tinh gọn" : "Your Path to Emotional Clarity"}
+            {language === "vi" ? (
+              <>Hành trình trợ giúp <span className="gradient-text">tinh thần tinh gọn</span></>
+            ) : (
+              <>Your Path to <span className="gradient-text">Emotional Clarity</span></>
+            )}
           </h2>
           <p className="text-body text-foreground-secondary mt-4">
             {language === "vi"
@@ -630,7 +650,11 @@ export default function HomePage() {
                 {language === "vi" ? "KHÓA HỌC KỸ NĂNG" : "LIFE SKILL COURSES"}
               </span>
               <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-                {language === "vi" ? "Rèn luyện và nâng cao trí tuệ cảm xúc" : "Grow Your Emotional Intelligence"}
+                {language === "vi" ? (
+                  <>Rèn luyện và nâng cao <span className="gradient-text">trí tuệ cảm xúc</span></>
+                ) : (
+                  <>Grow Your <span className="gradient-text">Emotional Intelligence</span></>
+                )}
               </h2>
             </div>
             <Link
@@ -716,7 +740,11 @@ export default function HomePage() {
               {language === "vi" ? "TÀI NGUYÊN TÂM LÝ" : "WELLNESS LIBRARY"}
             </span>
             <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-              {language === "vi" ? "Góc tài nguyên nâng niu tâm trí" : "Curated Self-Care Library"}
+              {language === "vi" ? (
+                <>Góc tài nguyên <span className="gradient-text">nâng niu tâm trí</span></>
+              ) : (
+                <>Curated <span className="gradient-text">Self-Care Library</span></>
+              )}
             </h2>
             <p className="text-body text-foreground-secondary mt-4 leading-relaxed">
               {language === "vi"
@@ -792,7 +820,11 @@ export default function HomePage() {
                 {language === "vi" ? "GÓC SẺ CHIA" : "WELLNESS INSIGHTS"}
               </span>
               <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-                {language === "vi" ? "Góc nhìn chuyên sâu và kiến thức bổ ích" : "Expert Articles on Well-being"}
+                {language === "vi" ? (
+                  <>Góc nhìn chuyên sâu và <span className="gradient-text">kiến thức bổ ích</span></>
+                ) : (
+                  <>Expert Articles on <span className="gradient-text">Well-being</span></>
+                )}
               </h2>
             </div>
             <Link
@@ -909,7 +941,11 @@ export default function HomePage() {
             {language === "vi" ? "KÝ ỨC CHỮA LÀNH" : "TESTIMONIALS OF HOPE"}
           </span>
           <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-            {language === "vi" ? "Những trải nghiệm thay đổi cuộc sống" : "Echoes of Growth & Healing"}
+            {language === "vi" ? (
+              <>Những trải nghiệm <span className="gradient-text">thay đổi cuộc sống</span></>
+            ) : (
+              <>Echoes of <span className="gradient-text">Growth & Healing</span></>
+            )}
           </h2>
         </div>
 
@@ -962,7 +998,11 @@ export default function HomePage() {
             {language === "vi" ? "GIẢI ĐÁP THẮC MẮC" : "FAQ"}
           </span>
           <h2 className="text-h2 font-bold text-foreground mt-4 leading-[1.15]">
-            {language === "vi" ? "Những băn khoăn thường gặp" : "Common Clarifications"}
+            {language === "vi" ? (
+              <>Những <span className="gradient-text">băn khoăn thường gặp</span></>
+            ) : (
+              <>Common <span className="gradient-text">Clarifications</span></>
+            )}
           </h2>
         </div>
 

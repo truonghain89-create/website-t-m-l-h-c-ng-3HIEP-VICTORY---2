@@ -60,7 +60,11 @@ export default function AboutPage() {
           {language === "vi" ? "VỀ CHÚNG TÔI" : "ABOUT MINDCARE"}
         </span>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mt-4 mb-6 leading-tight">
-          {language === "vi" ? "Sứ mệnh nâng đỡ tâm hồn trẻ thơ học đường" : "Nurturing Young Minds In Education"}
+          {language === "vi" ? (
+            <>Sứ mệnh nâng đỡ <span className="gradient-text">tâm hồn trẻ thơ</span> học đường</>
+          ) : (
+            <>Nurturing <span className="gradient-text">Young Minds</span> In Education</>
+          )}
         </h1>
         <p className="text-base text-foreground-secondary leading-relaxed">
           {language === "vi"
@@ -104,7 +108,11 @@ export default function AboutPage() {
         <div className="lg:col-span-6">
           <span className="text-xs font-bold text-secondary tracking-wider uppercase subheading">{language === "vi" ? "CÂU CHUYỆN SÁNG LẬP" : "OUR ORIGIN STORY"}</span>
           <h2 className="text-3xl font-extrabold text-foreground mt-3 mb-6">
-            {language === "vi" ? "Hành trình khởi nguồn từ lớp học" : "It started in the classroom"}
+            {language === "vi" ? (
+              <>Hành trình khởi nguồn từ <span className="gradient-text">lớp học</span></>
+            ) : (
+              <>It started in the <span className="gradient-text">classroom</span></>
+            )}
           </h2>
           <p className="text-sm text-foreground-secondary leading-relaxed mb-4">
             {language === "vi"
