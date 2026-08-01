@@ -5,6 +5,7 @@ import { AppContextProvider } from "@/context/AppContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToastContainer } from "@/components/ui/ToastContainer";
+import AIChatbot from "@/components/AIChatbot";
 
 const headingFont = Space_Grotesk({
   subsets: ["vietnamese", "latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ToastContainer />
+          <AIChatbot />
         </AppContextProvider>
       </body>
     </html>
